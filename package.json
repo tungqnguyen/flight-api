@@ -19,7 +19,7 @@
     "express": "^4.17.1",
     "path": "^0.12.7",
     "sqlite3": "^4.0.8",
-    "@alpaca-travel/airport-db": "./db"
+    "@alpaca-travel/aviation-db": "./db"
   },
   "keywords": [],
   "description": ""
