@@ -4,14 +4,15 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node ./db/databases/db-init.js"
+    "build": "node ./flight-query/database/db-init.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.17.3"
+    "eslint-plugin-import": "^2.17.3",
+    "jest": "^24.8.0"
   },
   "dependencies": {
     "axios": "^0.19.0",
@@ -19,7 +20,7 @@
     "express": "^4.17.1",
     "path": "^0.12.7",
     "sqlite3": "^4.0.8",
-    "@alpaca-travel/aviation-db": "./db"
+    "@alpaca-travel/flight-query": "./flight-query"
   },
   "keywords": [],
   "description": ""

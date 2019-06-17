@@ -85,7 +85,7 @@ async function flightDbInit() {
 async function dbInit() {
   try {
     console.log('initialize database');
-    db = new sqlite3.Database(path.join(__dirname, '../databases/aviation.db'));
+    db = new sqlite3.Database(path.join(__dirname, '../database/aviation.db'));
     await Promise.all([airportDbInit(), flightDbInit()]);
     // await Promise.all([airportDbInit()]);
     console.log('database initialized');

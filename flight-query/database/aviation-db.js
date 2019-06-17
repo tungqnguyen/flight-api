@@ -1,34 +1,26 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable prefer-promise-reject-errors */
-/* eslint-disable use-isnan */
+/* eslint-disable no-restricted-globals */
 
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 
-const db = new sqlite3.Database(path.join(__dirname, '../databases/aviation.db'));
+const db = new sqlite3.Database(path.join(__dirname, '../database/aviation.db'));
+const dir = path.join(__dirname, '/math_64.dll');
+db.loadExtension(dir, (err) => { if (err != null) console.log('err from loadExtension', err); });
 
 const aviationDb = {
-  getDataByCode(code, type) {
+  getAirportInfo(code) {
     return new Promise(((resolve, reject) => {
-      if (type.includes('airport')) {
-        // open db
-        // get data
-        const sql = 'SELECT * FROM airport WHERE icao_code = ? OR iata_code = ?;';
-        db.all(sql, [code, code], (err, rows) => resolve(rows));
-      } else {
-        return reject();
-      }
+      const sql = 'SELECT * FROM airport WHERE icao_code = ? OR iata_code = ?;';
+      db.all(sql, [code, code], (err, rows) => resolve(rows));
     }));
   },
   getClosetAirport(latitude, longitude, type, isoCountry) {
     // type check
     return new Promise((resolve, reject) => {
       const airportType = ['heliport', 'closed', 'small_airport', 'medium_airport', 'large_airport', 'seaplane_base'];
-      if (Number(latitude) == NaN || Number(longitude) == NaN) {
-        return reject('Please enter a valid lat lon');
+      if (isNaN(latitude) || isNaN(longitude)) {
+        return resolve('Please enter a valid lat lon');
       }
-      const dir = path.join(__dirname, '../databases/math_64');
-      db.loadExtension(dir, (err) => { if (err != null) console.log('err', err); });
       // Create a query for the closest
       const distance = '(6371 * acos(cos(radians($latitude)) * cos(radians(latitude)) * cos(radians(longitude) - radians($longitude)) + sin(radians($latitude)) * sin(radians(latitude))))';
       let sql = `SELECT name, icao_code, iata_code, latitude, longitude, ${distance} AS distance FROM airport GROUP BY name, icao_code, iata_code, latitude, longitude, distance ORDER BY distance LIMIT 3;`;
@@ -73,10 +65,10 @@ const aviationDb = {
             }
           }
         });
-        return resolve({
+        return (coordinates.length != 0) ? resolve({
           type: 'LineString',
           coordinates,
-        });
+        }) : resolve({});
       });
     });
   },
@@ -85,7 +77,7 @@ const aviationDb = {
       const sql = 'SELECT * FROM flight WHERE flight_iata = ? OR flight_icao = ?;';
       db.get(sql, [flightNo, flightNo], (err, row) => {
         if (row != undefined) resolve(row);
-        else reject('No record found');
+        else resolve({});
         if (err != null) {
           console.log('cant get data', err);
           reject();
@@ -101,22 +93,21 @@ const aviationDb = {
         arrival_icao: $arrivalIcao,
       } = flightInfo;
       const placeholders = '$departureIata, $arrivalIata, $departureIcao, $arrivalIcao';
-      console.log('flightInfo', flightInfo);
       // prepare geoJson
       const sql = `SELECT iata_code, icao_code, latitude, longitude FROM airport WHERE iata_code IN (${placeholders}) OR icao_code IN (${placeholders});`;
       db.all(sql, [$departureIata, $arrivalIata, $departureIcao, $arrivalIcao], (error, rows) => {
         // console.log('all rows', rows);
-        const departureCoordinate = [];
-        const arrivalCoordinate = [];
+        let departureCoordinate = [];
+        let arrivalCoordinate = [];
         rows.map((element) => {
           if (element.iata_code == $departureIata || element.icao_code == $departureIcao) {
-            departureCoordinate.push(element);
-          } else arrivalCoordinate.push(element);
+            departureCoordinate = [element.latitude, element.longitude];
+          } else arrivalCoordinate = [element.latitude, element.longitude];
         });
-        return resolve({
+        return (departureCoordinate.length != 0 && arrivalCoordinate.length != 0) ? resolve({
           type: 'LineString',
           coordinates: [departureCoordinate, arrivalCoordinate],
-        });
+        }) : resolve({});
       });
     });
   },

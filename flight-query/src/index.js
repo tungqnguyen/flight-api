@@ -1,10 +1,10 @@
-const aviationDb = require('../database-interface/aviation-db');
+const aviationDb = require('../database/aviation-db');
 
-const databases = [aviationDb];
+const database = [aviationDb];
 
-const getCodeInfo = async (code, type) => {
+const findAirportInfo = async (code, type) => {
   let result = [];
-  const records = await Promise.all(databases.map(db => db.getDataByCode(code, type)));
+  const records = await Promise.all(database.map(db => db.getAirportInfo(code)));
   records.map((collection) => {
     result = result.concat(collection);
   });
@@ -29,7 +29,7 @@ const findFlightRouteGeoJson = async (flightNo) => {
   const result = await aviationDb.getFlightRouteGeoJson(flightNo);
   return result;
 };
-exports.getCodeInfo = getCodeInfo;
+exports.findAirportInfo = findAirportInfo;
 exports.findClosetAirport = findClosetAirport;
 exports.findAirportsRoute = findAirportsRoute;
 exports.findFlightRoute = findFlightRoute;
