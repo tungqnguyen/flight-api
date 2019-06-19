@@ -47,7 +47,7 @@ describe('Retrieve airport info', () => {
 });
 
 describe('Retrieve route information from today\'s flight number', () => {
-  test('give a valid flight number', async () => {
+  test('give valid flight number', async () => {
     expect.assertions(1);
     const data = await flightQuery.findFlightRoute('CM276');
     expect(data).toEqual({
@@ -60,12 +60,12 @@ describe('Retrieve route information from today\'s flight number', () => {
       airline_iata: 'CM',
     });
   });
-  test('give an invalid flight number', async () => {
+  test('give invalid flight number', async () => {
     expect.assertions(1);
     const data = await flightQuery.findFlightRoute('00A');
     expect(data).toEqual({});
   });
-  test('give a valid flight number and return GeoJSON format', async () => {
+  test('give valid flight number and return GeoJSON format', async () => {
     expect.assertions(1);
     const data = await flightQuery.findFlightRouteGeoJson('CM276');
     expect(data).toEqual({
@@ -74,7 +74,7 @@ describe('Retrieve route information from today\'s flight number', () => {
         [9.0713596344, -79.3834991455]],
     });
   });
-  test('give an invalid flight number and return GeoJSON format', async () => {
+  test('give an invalid flight number and return empty object', async () => {
     expect.assertions(1);
     const data = await flightQuery.findFlightRouteGeoJson('CM27655');
     expect(data).toEqual({});
@@ -82,7 +82,7 @@ describe('Retrieve route information from today\'s flight number', () => {
 });
 
 describe('Show nearby airports on given lat/lon', () => {
-  test('give a valid lat/lon pair', async () => {
+  test('give valid lat/lon pair', async () => {
     expect.assertions(1);
     const data = await flightQuery.findClosetAirport(-37.8034129, 144.9997052);
     expect(data).toEqual([{
@@ -110,12 +110,12 @@ describe('Show nearby airports on given lat/lon', () => {
       distance: 4.377607450520195,
     }]);
   });
-  test('give an invalid lat/lon pair', async () => {
+  test('give invalid lat/lon pair', async () => {
     expect.assertions(1);
     const data = await flightQuery.findClosetAirport('-37.8034129s', 'sd144.9997052');
     expect(data).toEqual('Please enter a valid lat lon');
   });
-  test('give lat lon and filtered by type of small_airport', async () => {
+  test('filtered by type of small_airport', async () => {
     expect.assertions(1);
     const data = await flightQuery.findClosetAirport('-37.8034129', '144.9997052', 'small_airport');
     expect(data).toEqual([{
@@ -146,7 +146,7 @@ describe('Show nearby airports on given lat/lon', () => {
       distance: 36.89672514489765,
     }]);
   });
-  test('give lat lon and filtered by iso country codes: VN', async () => {
+  test('filtered by iso country codes: VN', async () => {
     expect.assertions(1);
     const data = await flightQuery.findClosetAirport('-37.8034129', '144.9997052', null, 'VN');
     expect(data).toEqual([{
@@ -179,7 +179,7 @@ describe('Show nearby airports on given lat/lon', () => {
   });
 });
 describe('Return GeoJSON object for an array of airport codes', () => {
-  test('give a series of airport codes', async () => {
+  test('give valid airport codes', async () => {
     expect.assertions(1);
     const data = await flightQuery.findAirportsRoute(['SGN', 'MEL', 'SYD']);
     expect(data).toEqual({
@@ -190,9 +190,27 @@ describe('Return GeoJSON object for an array of airport codes', () => {
        [-33.94609832763672, 151.177001953125]],
     });
   });
-  test('give a series of airport codes', async () => {
+  test('give invalid airport codes', async () => {
     expect.assertions(1);
     const data = await flightQuery.findAirportsRoute(['SGNdf', 'MELdx', 'SYD111']);
     expect(data).toEqual({});
   });
 });
+// describe('Given airport code, look up all flights', () => {
+//   test('give airport code', async () => {
+//     expect.assertions(1);
+//     const data = await flightQuery.findAirportFlights('SGN');
+//     expect(data).toEqual({
+//       type: 'LineString',
+//       coordinates:
+//      [[10.8187999725, 106.652000427],
+//        [-37.673302, 144.843002],
+//        [-33.94609832763672, 151.177001953125]],
+//     });
+//   });
+//   test('give invalid airport codes', async () => {
+//     expect.assertions(1);
+//     const data = await flightQuery.findAirportsRoute(['SGNdf', 'MELdx', 'SYD111']);
+//     expect(data).toEqual({});
+//   });
+// });

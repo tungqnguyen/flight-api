@@ -3,6 +3,7 @@ const path = require('path');
 const axios = require('axios');
 const parse = require('csv-parse');
 
+const KEY = 'b63972-4141d9';
 let db = null;
 
 function createAirportDbCol(array) {
@@ -53,7 +54,6 @@ async function airportDbInit() {
 async function flightDbInit() {
   return new Promise(async (resolve, reject) => {
     try {
-      const KEY = '84d2f1-bd395b';
       db.run('DROP TABLE IF EXISTS flight');
       console.log('creating flight table...');
       const response = await axios.get(`http://aviation-edge.com/v2/public/flights?key=${KEY}`);
@@ -87,7 +87,6 @@ async function dbInit() {
     console.log('initialize database');
     db = new sqlite3.Database(path.join(__dirname, '../database/aviation.db'));
     await Promise.all([airportDbInit(), flightDbInit()]);
-    // await Promise.all([airportDbInit()]);
     console.log('database initialized');
     db.close();
   } catch (error) {

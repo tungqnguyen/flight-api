@@ -10,57 +10,122 @@ app.use(express.json());
 app.set('views', viewsPath);
 
 app.get('/', async (req, res) => {
-  const { url } = req.query;
-  res.sendFile(path.join(`${viewsPath}/index.html`));
 });
 // For an airport code, return information about the airport
 app.get('/airport/:code/', async (req, res) => {
   const { code } = req.params;
-  try {
-    const data = await flightQuery.findAirportInfo(code);
-    // console.log('data from api', data);
-  } catch (error) {
-    console.log('error', error);
+  const data = await flightQuery.findAirportInfo(code);
+  const keys = Object.keys(data);
+  let response = { $ref: `://airport/${code}` };
+  if (keys.length != 0) {
+    response = {
+      ...response,
+      position: [data.latitude, data.longitude],
+      name: response.name,
+      attributes: [],
+    };
+    keys.map((key) => {
+      if (key != 'latitude' && key != 'longitude' && key != 'name') {
+        response.attributes.push({ [key]: data[key] });
+      }
+    });
+  } else {
+    response.message = 'No record found';
   }
-});
 
+  res.send(response);
+});
+// For an airport code, look up today's flights filtered by departure/arrival
 app.get('/airport/:code/flights', async (req, res) => {
-  console.log('hello', req.params);
+  const {
+    type = 'departure', destCountry = null, airline = null,
+  } = req.query;
+  try {
+    const airportCode = req.params.code;
+    const options = { type, destCountry, airline };
+    const data = await flightQuery.findAirportFlights(airportCode, options);
+    let response = { $ref: `://airport/${airportCode}` };
+    if (Array.isArray(data) && data.length > 0) {
+      response = { ...response, flights: data };
+    } else if (Array.isArray(data) && data.length == 0) {
+      response.message = 'No record found';
+    } else {
+      response.message = data;
+    }
+    res.send(response);
+  } catch (error) {
+    res.send('error');
+  }
 });
 // For a given Longitude/Latitude, show the closest airport
 app.get('/search/airport', async (req, res) => {
   const {
-    lat, lon, iso_country = null, type = null,
+    lat, lon, isoCountry = null, type = null,
   } = req.query;
-  console.log('/search/airport', lat, lon, type, iso_country);
-  const data = await flightQuery.findClosetAirport(lat, lon, type, iso_country);
-  console.log('data from api', data);
+  let response = { $ref: `://search/airport/?lat=${lat}&lon=${lon}&isoCountry=${isoCountry}&type=${type}` };
+  const data = await flightQuery.findClosetAirports(lat, lon, { type, isoCountry });
+  if (Array.isArray(data) && data.length > 0) {
+    response = { ...response, airports: data };
+  }
+  if (Array.isArray(data) && data.length == 0) {
+    response.message = 'No record found';
+  } else {
+    response.message = data;
+  }
+  res.send(response);
 });
 // For a flight number, supply information about the route
 app.get('/flight/:code', async (req, res) => {
-  console.log('code/', req.params);
   const { code: flightNo } = req.params;
+  let response = { $ref: `://flight/${flightNo}` };
   const data = await flightQuery.findFlightRoute(flightNo);
-  console.log('route found', data);
+  if (Object.keys(data).length != 0) {
+    response = { ...response, route: data };
+  } else {
+    response.message = 'No record found';
+  }
+  res.send(response);
 });
 // For a flight number, return the route as GeoJSON format;
 app.get('/flight/:code/route.geojson', async (req, res) => {
-  console.log('code/route.geojson', req.params);
   const { code: flightNo } = req.params;
+  let response = { $ref: `://flight/${flightNo}/route.geojson` };
   const data = await flightQuery.findFlightRouteGeoJson(flightNo);
-  console.log('geoJson route', data.coordinates);
+  if (Object.keys(data).length != 0) {
+    response = { ...response, routeGeoJSON: data };
+  } else {
+    response.message = 'No record found';
+  }
+  res.send(response);
 });
+// For a flight number, provide the location of the plane on the route as GeoJSON Point;
 app.get('/flight/:code/live.geojson', async (req, res) => {
-  // const url = req.query.url
-  console.log('hello flight', req.params);
+  const { code: iataCode } = req.params;
+  let response = { $ref: `://flight/${iataCode}/live.geojson` };
+  const data = await flightQuery.findFlightLocation(iataCode);
+  if (typeof data === 'object' && Object.keys(data).length != 0) {
+    response = { ...response, currentLocation: data };
+  } else {
+    response.message = data;
+  }
+  res.send(response);
 });
 // For a series of supplied airport codes, return a route between these points
 app.get('/search/flight/route/', async (req, res) => {
-  // console.log('/search/flight/route', req.query);
   let airportArr = [];
   airportArr = req.query.airports.split(',');
+  let response = { $ref: `://search/flight/route?airports=${req.query.airports}` };
+  if (airportArr.length < 2) {
+    response.message = 'Please enter a series of airport codes';
+    return res.send(response);
+  }
   const data = await flightQuery.findAirportsRoute(airportArr);
-  console.log('data for airports route', data);
+  if (Object.keys(data).length != 0) {
+    response = { ...response, routes: data };
+  } else {
+    response.message = 'No record found';
+  }
+  res.send(response);
 });
 
 

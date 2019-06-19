@@ -1,36 +1,43 @@
-const aviationDb = require('../database/aviation-db');
-
-const database = [aviationDb];
+const airport = require('../database/airport');
+const flight = require('../database/flight');
 
 const findAirportInfo = async (code, type) => {
-  let result = [];
-  const records = await Promise.all(database.map(db => db.getAirportInfo(code)));
-  records.map((collection) => {
-    result = result.concat(collection);
-  });
+  const result = await airport.getAirportInfo(code);
   return result;
 };
 
-const findClosetAirport = async (lat, lon, type, isoCountry) => {
-  const result = await aviationDb.getClosetAirport(lat, lon, type, isoCountry);
+const findClosetAirports = async (lat, lon, options) => {
+  const result = await airport.getClosetAirports(lat, lon, options);
   return result;
 };
 
 const findAirportsRoute = async (airportCodes) => {
-  const result = await aviationDb.getAirportsRoute(airportCodes);
+  const result = await airport.getAirportsRoute(airportCodes);
+  return result;
+};
+
+const findAirportFlights = async (airportCode, options) => {
+  const result = await airport.getAirportFlights(airportCode, options);
   return result;
 };
 
 const findFlightRoute = async (flightNo) => {
-  const result = await aviationDb.getFlightRoute(flightNo);
+  const result = await flight.getFlightRoute(flightNo);
   return result;
 };
 const findFlightRouteGeoJson = async (flightNo) => {
-  const result = await aviationDb.getFlightRouteGeoJson(flightNo);
+  const result = await flight.getFlightRouteGeoJson(flightNo);
   return result;
 };
+const findFlightLocation = async (flightNo) => {
+  const result = await flight.getFlightLocation(flightNo);
+  return result;
+};
+
 exports.findAirportInfo = findAirportInfo;
-exports.findClosetAirport = findClosetAirport;
+exports.findClosetAirports = findClosetAirports;
 exports.findAirportsRoute = findAirportsRoute;
 exports.findFlightRoute = findFlightRoute;
 exports.findFlightRouteGeoJson = findFlightRouteGeoJson;
+exports.findAirportFlights = findAirportFlights;
+exports.findFlightLocation = findFlightLocation;
