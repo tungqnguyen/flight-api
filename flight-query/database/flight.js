@@ -1,8 +1,10 @@
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 const axios = require('axios');
+const globals = require('../global');
+const testData = require('../../tests/data/airport_departures');
 
-const KEY = '84d2f1-bd395b';
+const KEY = globals.key;
 const db = new sqlite3.Database(path.join(__dirname, '../database/aviation.db'));
 const flight = {
   getFlightRoute(flightNo) {

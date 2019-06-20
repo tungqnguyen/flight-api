@@ -2,9 +2,10 @@
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 const axios = require('axios');
-const testData = require('../airport_departures');
+const testData = require('../../tests/data/airport_departures');
+const globals = require('../global');
 
-const KEY = 'b63972-4141d9';
+const KEY = globals.key;
 const db = new sqlite3.Database(path.join(__dirname, '../database/aviation.db'));
 const dir = path.join(__dirname, '/math_64.dll');
 db.loadExtension(dir, (err) => { if (err != null) console.log('err from loadExtension', err); });
@@ -120,8 +121,8 @@ const airport = {
     try {
       const response = await axios.get(url);
       const filteredData = response.data.filter((element, i) => {
-        // test data to save api calls
-        // const filteredData = testData.dummy.filter((element, i) => {
+      // test data to save api calls
+      // const filteredData = testData.allFlights.filter((element, i) => {
         let countryFilter = null;
         let airlineFilter = null;
         if (destCountry != null) countryFilter = this.filterByCountries(element, airportsByCountry);
@@ -133,6 +134,7 @@ const airport = {
       });
       return filteredData;
     } catch (error) {
+      console.log('error received', error);
       return [];
     }
   },

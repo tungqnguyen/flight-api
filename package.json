@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest  --env=node",
+    "test:watch": "jest --watch",
     "build": "node ./flight-query/database/db-init.js"
   },
   "author": "",
@@ -12,15 +13,17 @@
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.17.3",
-    "jest": "^24.8.0"
+    "jest": "^24.8.0",
+    "supertest": "^4.0.2"
   },
   "dependencies": {
+    "@alpaca-travel/flight-query": "./flight-query",
     "axios": "^0.19.0",
     "csv-parse": "^4.4.3",
     "express": "^4.17.1",
+    "nock": "^10.0.6",
     "path": "^0.12.7",
-    "sqlite3": "^4.0.8",
-    "@alpaca-travel/flight-query": "./flight-query"
+    "sqlite3": "^4.0.8"
   },
   "keywords": [],
   "description": ""

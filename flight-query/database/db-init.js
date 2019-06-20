@@ -2,8 +2,9 @@ const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 const axios = require('axios');
 const parse = require('csv-parse');
+const globals = require('../global');
 
-const KEY = 'b63972-4141d9';
+const KEY = globals.key;
 let db = null;
 
 function createAirportDbCol(array) {

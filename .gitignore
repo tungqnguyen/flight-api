@@ -1,3 +1,4 @@
 node_modules/
 /airport_excel.xlsx
 /flight-query/database/aviation.db
+/flight-query/all_flight.js

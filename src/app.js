@@ -1,15 +1,15 @@
 const path = require('path');
 const express = require('express');
+const flightQuery = require('../flight-query/src');
 
 const app = express();
-const port = 3000;
 const viewsPath = path.join(__dirname, '../views');
-const flightQuery = require('../flight-query/src');
 
 app.use(express.json());
 app.set('views', viewsPath);
 
 app.get('/', async (req, res) => {
+  res.send('Empty endpoint');
 });
 // For an airport code, return information about the airport
 app.get('/airport/:code/', async (req, res) => {
@@ -40,22 +40,18 @@ app.get('/airport/:code/flights', async (req, res) => {
   const {
     type = 'departure', destCountry = null, airline = null,
   } = req.query;
-  try {
-    const airportCode = req.params.code;
-    const options = { type, destCountry, airline };
-    const data = await flightQuery.findAirportFlights(airportCode, options);
-    let response = { $ref: `://airport/${airportCode}` };
-    if (Array.isArray(data) && data.length > 0) {
-      response = { ...response, flights: data };
-    } else if (Array.isArray(data) && data.length == 0) {
-      response.message = 'No record found';
-    } else {
-      response.message = data;
-    }
-    res.send(response);
-  } catch (error) {
-    res.send('error');
+  const airportCode = req.params.code;
+  const options = { type, destCountry, airline };
+  const data = await flightQuery.findAirportFlights(airportCode, options);
+  let response = { $ref: `://airport/${airportCode}?airline=${airline}&type=${type}&destCountry=${destCountry}` };
+  if (Array.isArray(data) && data.length > 0) {
+    response = { ...response, flights: data };
+  } else if (Array.isArray(data) && data.length == 0) {
+    response.message = 'No record found';
+  } else {
+    response.message = data;
   }
+  res.send(response);
 });
 // For a given Longitude/Latitude, show the closest airport
 app.get('/search/airport', async (req, res) => {
@@ -129,6 +125,4 @@ app.get('/search/flight/route/', async (req, res) => {
 });
 
 
-app.listen(port, () => {
-  console.log(`Server is up on port ${port}`);
-});
+module.exports = app;

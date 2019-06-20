@@ -4,8 +4,6 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest  --env=node",
-    "test:watch": "jest --watch"  
   },
   "keywords": [],
   "author": "",
