@@ -92,47 +92,15 @@ const airport = {
       });
     });
   },
-  filterByCountries(flightObj, airportsByCountry) {
-    for (let i = 0; i < airportsByCountry.length; i += 1) {
-      if (flightObj.arrival.iataCode != undefined
-        && flightObj.arrival.iataCode == airportsByCountry[i].iata_code) {
-        return true;
-      }
-      if (flightObj.arrival.icaoCode != undefined
-        && flightObj.arrival.icaoCode == airportsByCountry[i].icao_code) {
-        return true;
-      }
-    }
-    return false;
-  },
-  filterByAirline(flightObj, airline) {
-    if (flightObj.airline.iataCode == airline || flightObj.airline.icaoCode == airline) {
-      return true;
-    }
-    return false;
-  },
-  async getAirportFlights(airportCode, { type, destCountry, airline }) {
+
+  async getAirportFlights(airportCode, {
+    type, destCountry,
+  }) {
     if (type == 'arrival' && destCountry != null) return 'invalid parameter destCountry';
-    let airportsByCountry = [];
-    if (destCountry != null) {
-      airportsByCountry = await this.getAirportByCountry(destCountry);
-    }
     const url = `http://aviation-edge.com/v2/public/timetable?key=${KEY}&iataCode=${airportCode}&type=${type}`;
     try {
       const response = await axios.get(url);
-      const filteredData = response.data.filter((element, i) => {
-      // test data to save api calls
-      // const filteredData = testData.allFlights.filter((element, i) => {
-        let countryFilter = null;
-        let airlineFilter = null;
-        if (destCountry != null) countryFilter = this.filterByCountries(element, airportsByCountry);
-        if (airline != null) airlineFilter = this.filterByAirline(element, airline);
-        if (countryFilter == null && airlineFilter == null) return true;
-        if (countryFilter == true && airlineFilter == null) return true;
-        if (countryFilter == null && airlineFilter == true) return true;
-        if (countryFilter && airlineFilter) return true;
-      });
-      return filteredData;
+      return response.data;
     } catch (error) {
       console.log('error received', error);
       return [];

@@ -33,6 +33,10 @@ const findFlightLocation = async (flightNo) => {
   const result = await flight.getFlightLocation(flightNo);
   return result;
 };
+const findAirportsByCountry = async (countryCode) => {
+  const result = await airport.getAirportByCountry(countryCode);
+  return result;
+};
 
 exports.findAirportInfo = findAirportInfo;
 exports.findClosetAirports = findClosetAirports;
@@ -41,3 +45,4 @@ exports.findFlightRoute = findFlightRoute;
 exports.findFlightRouteGeoJson = findFlightRouteGeoJson;
 exports.findAirportFlights = findAirportFlights;
 exports.findFlightLocation = findFlightLocation;
+exports.findAirportsByCountry = findAirportsByCountry;

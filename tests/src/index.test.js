@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-// const flightQuery = require('@alpaca-travel/flight-query');
 const request = require('supertest');
 const nock = require('nock');
 const app = require('../../src/app');

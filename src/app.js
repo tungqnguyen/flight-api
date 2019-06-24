@@ -1,12 +1,11 @@
-const path = require('path');
 const express = require('express');
 const flightQuery = require('../flight-query/src');
+const cache = require('../middleware/cache');
+const filter = require('../utility/filter');
+const util = require('../utility/util');
 
 const app = express();
-const viewsPath = path.join(__dirname, '../views');
-
 app.use(express.json());
-app.set('views', viewsPath);
 
 app.get('/', async (req, res) => {
   res.send('Empty endpoint');
@@ -20,13 +19,18 @@ app.get('/airport/:code/', async (req, res) => {
   if (keys.length != 0) {
     response = {
       ...response,
-      position: [data.latitude, data.longitude],
+      position: [data.longitude, data.latitude],
       name: response.name,
       attributes: [],
     };
     keys.map((key) => {
       if (key != 'latitude' && key != 'longitude' && key != 'name') {
-        response.attributes.push({ [key]: data[key] });
+        const ref = `://airport/attribute/${key}`;
+        const attributeObj = {
+          attribute: { $ref: ref, name: key },
+          value: data[key],
+        };
+        response.attributes.push(attributeObj);
       }
     });
   } else {
@@ -36,15 +40,28 @@ app.get('/airport/:code/', async (req, res) => {
   res.send(response);
 });
 // For an airport code, look up today's flights filtered by departure/arrival
-app.get('/airport/:code/flights', async (req, res) => {
+app.get('/airport/:code/flights/:type', cache.get, async (req, res, next) => {
+  // otherwise perform a new request
   const {
-    type = 'departure', destCountry = null, airline = null,
+    destCountry = null, airline = null, page = null, limit = null,
   } = req.query;
   const airportCode = req.params.code;
-  const options = { type, destCountry, airline };
-  const data = await flightQuery.findAirportFlights(airportCode, options);
+  const { type } = req.params;
+  const options = {
+    type, destCountry,
+  };
+  let data = null;
+  console.log('locals', res.locals.cachedData);
+  // if data is cached before, then return
+  if (res.locals.cachedData) {
+    data = res.locals.cachedData;
+  } else {
+    data = await flightQuery.findAirportFlights(airportCode, options);
+  }
   let response = { $ref: `://airport/${airportCode}?airline=${airline}&type=${type}&destCountry=${destCountry}` };
   if (Array.isArray(data) && data.length > 0) {
+    const paramsObject = util.getParams(util.getUrlFromRequest(req));
+    data = filter.filterByParams(data, paramsObject);
     response = { ...response, flights: data };
   } else if (Array.isArray(data) && data.length == 0) {
     response.message = 'No record found';
@@ -52,7 +69,9 @@ app.get('/airport/:code/flights', async (req, res) => {
     response.message = data;
   }
   res.send(response);
-});
+  res.locals.data = data;
+  next();
+}, cache.set);
 // For a given Longitude/Latitude, show the closest airport
 app.get('/search/airport', async (req, res) => {
   const {
