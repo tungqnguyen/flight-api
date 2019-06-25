@@ -2,12 +2,26 @@
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 const axios = require('axios');
+const redis = require('redis');
+const { promisify } = require('util');
 const testData = require('../../tests/data/airport_departures');
 const globals = require('../global');
+
+// redis init
+const client = redis.createClient();
+const getAsync = promisify(client.get).bind(client);
+const ttl = promisify(client.ttl).bind(client);
+
+client.on('connect', () => {
+  console.log('Redis client connected');
+});
 
 const KEY = globals.key;
 const db = new sqlite3.Database(path.join(__dirname, '../database/aviation.db'));
 const dir = path.join(__dirname, '/math_64.dll');
+client.on('error', (err) => {
+  console.log(`Error ${err}`);
+});
 db.loadExtension(dir, (err) => { if (err != null) console.log('err from loadExtension', err); });
 const airport = {
   getAirportInfo(code) {
@@ -82,7 +96,7 @@ const airport = {
       });
     });
   },
-  getAirportByCountry(isoCountry) {
+  getAirportsByCountry(isoCountry) {
     return new Promise((resolve, reject) => {
       const sql = 'SELECT iata_code, icao_code FROM airport WHERE iso_country = ?';
       const params = isoCountry;
@@ -92,15 +106,84 @@ const airport = {
       });
     });
   },
-
+  cacheData(key, data) {
+    console.log(`store ${key}`);
+    client.setex(key, 3600, data);
+  },
+  filterByCountries(flightObj, airportsByCountry) {
+    for (let i = 0; i < airportsByCountry.length; i += 1) {
+      if (
+        flightObj.arrival.iataCode != undefined
+        && flightObj.arrival.iataCode == airportsByCountry[i].iata_code
+      ) {
+        return true;
+      }
+      if (
+        flightObj.arrival.icaoCode != undefined
+        && flightObj.arrival.icaoCode == airportsByCountry[i].icao_code
+      ) {
+        return true;
+      }
+    }
+    return false;
+  },
+  filterByAirline(flightObj, airline) {
+    if (flightObj.airline.iataCode == airline || flightObj.airline.icaoCode == airline) {
+      return true;
+    }
+    return false;
+  },
+  filterByParams(flightList, paramsObject) {
+    let destCountry = null;
+    let airline = null;
+    let airportsByCountry = [];
+    Object.keys(paramsObject).map(async (key) => {
+      switch (key) {
+        case 'airline':
+          airline = paramsObject[key];
+          break;
+        case 'destCountry':
+          destCountry = paramsObject[key];
+          airportsByCountry = await this.getAirportsByCountry(destCountry);
+          break;
+        default:
+      }
+    });
+    const filteredData = flightList.filter((element, i) => {
+      let countryFilter = null;
+      let airlineFilter = null;
+      if (destCountry != null) countryFilter = this.filterByCountries(element, airportsByCountry);
+      if (airline != null) airlineFilter = this.filterByAirline(element, airline);
+      if (countryFilter == null && airlineFilter == null) return true;
+      if (countryFilter == true && airlineFilter == null) return true;
+      if (countryFilter == null && airlineFilter == true) return true;
+      if (countryFilter && airlineFilter) return true;
+    });
+    return filteredData;
+  },
   async getAirportFlights(airportCode, {
-    type, destCountry,
+    type, destCountry, airline,
   }) {
     if (type == 'arrival' && destCountry != null) return 'invalid parameter destCountry';
+    let filteredData = [];
+    let response = null;
     const url = `http://aviation-edge.com/v2/public/timetable?key=${KEY}&iataCode=${airportCode}&type=${type}`;
     try {
-      const response = await axios.get(url);
-      return response.data;
+      const cachedData = await getAsync(url);
+      if (cachedData) {
+        response = JSON.parse(cachedData);
+        const sec = await ttl(url);
+        console.log('expire in', `${sec} sec`);
+        response = this.filterByParams(response, { destCountry, airline });
+        return response;
+      }
+      response = await axios.get(url);
+      const jsonData = JSON.stringify(response.data);
+      this.cacheData(url, jsonData);
+      if (Array.isArray(response.data) && response.data.length > 0) {
+        filteredData = this.filterByParams(response.data, { destCountry, airline });
+      }
+      return filteredData;
     } catch (error) {
       console.log('error received', error);
       return [];

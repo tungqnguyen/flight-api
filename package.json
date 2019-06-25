@@ -5,7 +5,9 @@
   "scripts": {
     "test": "jest  --env=node",
     "test:watch": "jest --watch",
-    "build": "node ./flight-query/database/db-init.js"
+    "build": "node ./flight-query/database/db-init.js",
+    "start": "nodemon ./src/server.js",
+    "debug": "node inspect ./src/server.js"
   },
   "author": "",
   "license": "ISC",

@@ -1,4 +1,5 @@
-const flightQuery = require('@alpaca-travel/flight-query');
+// const flightQuery = require('@alpaca-travel/flight-query');
+const airport = require('../database/airport');
 
 const filter = {
   filterByCountries(flightObj, airportsByCountry) {
@@ -35,7 +36,7 @@ const filter = {
           break;
         case 'destCountry':
           destCountry = paramsObject[key];
-          airportsByCountry = await flightQuery.findAirportsByCountry(destCountry);
+          airportsByCountry = await airport.findAirportsByCountry(destCountry);
           break;
         default:
       }
