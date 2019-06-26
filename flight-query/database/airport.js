@@ -1,14 +1,16 @@
+/* eslint-disable prefer-destructuring */
+/* eslint-disable arrow-body-style */
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-restricted-globals */
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 const axios = require('axios');
 const redis = require('redis');
 const { promisify } = require('util');
-const testData = require('../../tests/data/airport_departures');
 const globals = require('../global');
-
 // redis init
 const client = redis.createClient();
+// making redis functions to return promise
 const getAsync = promisify(client.get).bind(client);
 const ttl = promisify(client.ttl).bind(client);
 
@@ -33,7 +35,8 @@ const airport = {
       });
     }));
   },
-  getClosetAirports(latitude, longitude, { type, isoCountry }) {
+  // params is array
+  getClosetAirports(latitude, longitude, { typeArr, isoCountryArr, limit }) {
     // type check
     return new Promise((resolve, reject) => {
       const airportType = ['heliport', 'closed', 'small_airport', 'medium_airport', 'large_airport', 'seaplane_base'];
@@ -41,20 +44,31 @@ const airport = {
         return resolve('Please enter a valid lat lon');
       }
       // Create a query for the closest
-      const distance = '(6371 * acos(cos(radians($latitude)) * cos(radians(latitude)) * cos(radians(longitude) - radians($longitude)) + sin(radians($latitude)) * sin(radians(latitude))))';
-      let sql = `SELECT name, icao_code, iata_code, latitude, longitude, iso_country, type, ${distance} AS distance FROM airport GROUP BY name, icao_code, iata_code, latitude, longitude, distance ORDER BY distance LIMIT 3;`;
-      const params = { $latitude: latitude, $longitude: longitude };
-      if (isoCountry != null && type == null) {
-        sql = `SELECT name, icao_code, iata_code, latitude, longitude, iso_country, type, ${distance} AS distance FROM airport WHERE iso_country = $iso_country GROUP BY name, icao_code, iata_code, latitude, longitude, iso_country, distance ORDER BY distance LIMIT 3;`;
-        params.$iso_country = isoCountry;
-      } else if (type != null && isoCountry == null) {
-        sql = `SELECT name, icao_code, iata_code, latitude, longitude, iso_country, type, ${distance} AS distance FROM airport WHERE type = $type GROUP BY name, icao_code, iata_code, latitude, longitude, type, distance ORDER BY distance LIMIT 3;`;
-        params.$type = type;
-      } else if (type != null && isoCountry != null) {
-        sql = `SELECT name, icao_code, iata_code, latitude, longitude, iso_country, type, ${distance} AS distance FROM airport WHERE type = $type AND iso_country = $iso_country GROUP BY name, icao_code, iata_code, latitude, longitude, iso_country, type, distance ORDER BY distance LIMIT 3;`;
-        params.$iso_country = isoCountry;
-        params.$type = type;
+      let params = [latitude, longitude, latitude];
+      const distance = '(6371 * acos(cos(radians(?)) * cos(radians(latitude)) * cos(radians(longitude) - radians(?)) + sin(radians(?)) * sin(radians(latitude))))';
+      let sql = `SELECT name, icao_code, iata_code, latitude, longitude, iso_country, type, ${distance} AS distance FROM airport GROUP BY name, icao_code, iata_code, latitude, longitude, distance ORDER BY distance LIMIT ${limit};`;
+      // creating placeholders
+      let isoCountryPlaceHolder = null;
+      let typePlaceHolder = null;
+      if (isoCountryArr != null) isoCountryPlaceHolder = isoCountryArr.map(value => '?').join(',');
+      if (typeArr != null) typePlaceHolder = typeArr.map(value => '?').join(',');
+      // sort by countries
+      if (isoCountryArr != null && typeArr == null) {
+        sql = `SELECT name, icao_code, iata_code, latitude, longitude, iso_country, type, ${distance} AS distance FROM airport WHERE iso_country IN (${isoCountryPlaceHolder}) GROUP BY name, icao_code, iata_code, latitude, longitude, iso_country, distance ORDER BY distance LIMIT ${limit};`;
+        params = params.concat(isoCountryArr);
+      // sort by type of airports
+      } else if (typeArr != null && isoCountryArr == null) {
+        sql = `SELECT name, icao_code, iata_code, latitude, longitude, iso_country, type, ${distance} AS distance FROM airport WHERE type IN (${typePlaceHolder}) GROUP BY name, icao_code, iata_code, latitude, longitude, type, distance ORDER BY distance LIMIT ${limit};`;
+        params = params.concat(typeArr);
+      // sort by both countries and type of airports
+      } else if (typeArr != null && isoCountryArr != null) {
+        sql = `SELECT name, icao_code, iata_code, latitude, longitude, iso_country, type, ${distance} AS distance FROM airport WHERE type IN (${typePlaceHolder}) AND iso_country IN (${isoCountryPlaceHolder}) GROUP BY name, icao_code, iata_code, latitude, longitude, iso_country, type, distance ORDER BY distance LIMIT ${limit};`;
+
+        params = params.concat(typeArr);
+        params = params.concat(isoCountryArr);
       }
+      // console.log('params', params);
+      // console.log('sql', sql);
       db.all(sql, params, (error, rows) => {
         if (error != null) {
           return reject(error);
@@ -107,7 +121,7 @@ const airport = {
     });
   },
   cacheData(key, data) {
-    console.log(`store ${key}`);
+    console.log(`cache ${key}`);
     client.setex(key, 3600, data);
   },
   filterByCountries(flightObj, airportsByCountry) {
@@ -133,22 +147,17 @@ const airport = {
     }
     return false;
   },
-  filterByParams(flightList, paramsObject) {
+  async filterByParams(flightList, paramsObject) {
     let destCountry = null;
     let airline = null;
     let airportsByCountry = [];
-    Object.keys(paramsObject).map(async (key) => {
-      switch (key) {
-        case 'airline':
-          airline = paramsObject[key];
-          break;
-        case 'destCountry':
-          destCountry = paramsObject[key];
-          airportsByCountry = await this.getAirportsByCountry(destCountry);
-          break;
-        default:
-      }
-    });
+    if (paramsObject.destCountry != null) {
+      destCountry = paramsObject.destCountry;
+      airportsByCountry = await this.getAirportsByCountry(destCountry);
+    }
+    if (paramsObject.airline != null) {
+      airline = paramsObject.airline;
+    }
     const filteredData = flightList.filter((element, i) => {
       let countryFilter = null;
       let airlineFilter = null;
@@ -174,14 +183,25 @@ const airport = {
         response = JSON.parse(cachedData);
         const sec = await ttl(url);
         console.log('expire in', `${sec} sec`);
-        response = this.filterByParams(response, { destCountry, airline });
+        response = await this.filterByParams(response, { destCountry, airline });
+        response.forEach((val, i) => {
+          val.stops = [val.departure, val.arrival];
+          delete val.arrival;
+          delete val.departure;
+        });
         return response;
       }
       response = await axios.get(url);
-      const jsonData = JSON.stringify(response.data);
-      this.cacheData(url, jsonData);
       if (Array.isArray(response.data) && response.data.length > 0) {
-        filteredData = this.filterByParams(response.data, { destCountry, airline });
+        const jsonData = JSON.stringify(response.data);
+        this.cacheData(url, jsonData);
+        filteredData = await this.filterByParams(response.data, { destCountry, airline });
+        // format departure and arrival into stops
+        filteredData.forEach((val, i) => {
+          val.stops = [val.departure, val.arrival];
+          delete val.arrival;
+          delete val.departure;
+        });
       }
       return filteredData;
     } catch (error) {

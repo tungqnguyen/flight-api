@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 const express = require('express');
 const flightQuery = require('../flight-query/src');
 
@@ -12,12 +13,12 @@ app.get('/airport/:code/', async (req, res) => {
   const { code } = req.params;
   const data = await flightQuery.findAirportInfo(code);
   const keys = Object.keys(data);
-  let response = { $ref: req.originalUrl };
+  let response = { $ref: `/${req.originalUrl}` };
   if (keys.length != 0) {
     response = {
       ...response,
       position: [data.longitude, data.latitude],
-      name: response.name,
+      name: data.name,
       attributes: [],
     };
     keys.map((key) => {
@@ -37,29 +38,38 @@ app.get('/airport/:code/', async (req, res) => {
   res.send(response);
 });
 app.get('/airport/:code/flights/:type', async (req, res) => {
-  // otherwise perform a new request
   const { destCountry = null, airline = null } = req.query;
-  const page = Math.max(parseInt(req.query.page, 10), 1);
-  const limit = Math.max(parseInt(req.query.limit, 10), 1);
+  let { page = 1, limit = 10 } = req.query;
+  page = Math.max(parseInt(page, 10), 1);
+  limit = Math.max(parseInt(limit, 10), 1);
   const airportCode = req.params.code;
   const { type } = req.params;
   const options = {
     type, destCountry, airline,
   };
   const data = await flightQuery.findAirportFlights(airportCode, options);
-  let response = { $ref: req.originalUrl };
+  let response = { $ref: `/${req.originalUrl}`, message: 'OK' };
   if (Array.isArray(data) && data.length > 0) {
-    // do pagination here
-    const startRecord = Math.max(parseInt(page, 10) - 1, 1) * Math.max(limit, 0);
-    const endRecord = startRecord + parseInt(limit, 10);
+    // pagination
+    const startRecord = Math.max(parseInt(page, 10) - 1, 0) * Math.min(parseInt(limit, 10), data.length);
+    const endRecord = startRecord + Math.min(parseInt(limit, 10), data.length - startRecord);
+    if (endRecord == data.length) response.message = 'End of results';
     const paginatedData = data.slice(startRecord, endRecord);
+    const results = paginatedData.map((element) => {
+      element.flight = { ref: `//flight/${element.flight.icaoNumber}`, ...element.flight };
+      // attaching airport ref
+      element.stops.forEach((stop, i, stops) => {
+        stops[i] = { ref: `//airport/${stop.icaoCode}`, ...stop };
+      });
+      return element;
+    });
     response = {
       ...response,
-      results: paginatedData,
+      results,
       query: { destCountry, airline },
       total: data.length,
       page,
-      limit,
+      limit: endRecord - startRecord,
     };
   } else if (Array.isArray(data) && data.length == 0) {
     response.message = 'No record found';
@@ -71,12 +81,17 @@ app.get('/airport/:code/flights/:type', async (req, res) => {
 // For a given Longitude/Latitude, show the closest airport
 app.get('/search/airport', async (req, res) => {
   const {
-    lat, lon, isoCountry = null, type = null,
+    lat, lon, isoCountry = null, type = null, limit = 3,
   } = req.query;
-  let response = { $ref: `://search/airport/?lat=${lat}&lon=${lon}&isoCountry=${isoCountry}&type=${type}` };
-  const data = await flightQuery.findClosetAirports(lat, lon, { type, isoCountry });
+  let isoCountryArr = null;
+  let typeArr = null;
+  if (isoCountry != null) isoCountryArr = isoCountry.split(',');
+  if (type != null) typeArr = type.split(',');
+  let response = { $ref: req.originalUrl, message: 'OK' };
+  const data = await flightQuery.findClosetAirports(lat, lon, { typeArr, isoCountryArr, limit });
   if (Array.isArray(data) && data.length > 0) {
-    response = { ...response, airports: data };
+    const results = data.map(element => ({ ref: `//airport/${element.icao_code}`, ...element }));
+    response = { ...response, results };
   }
   if (Array.isArray(data) && data.length == 0) {
     response.message = 'No record found';

@@ -17,6 +17,7 @@
         "no-console":"off",
         "import/no-extraneous-dependencies":"off",
         "consistent-return":"off",
-        "eqeqeq":"off"
+        "eqeqeq":"off",
+        "max-len":["error", {"code": 150, "ignoreTemplateLiterals": true, "ignoreStrings": true}]
     }
 }
