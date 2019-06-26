@@ -59,9 +59,9 @@ async function flightDbInit() {
       console.log('creating flight table...');
       const response = await axios.get(`http://aviation-edge.com/v2/public/flights?key=${KEY}`);
       // eslint-disable-next-line max-len
-      const str = 'flight_iata CHAR, flight_icao CHAR, departure_iata CHAR, arrival_iata CHAR, departure_icao CHAR, arrival_icao CHAR, airline_iata CHAR';
+      const str = 'flight_iata CHAR, flight_icao CHAR, departure_iata CHAR, arrival_iata CHAR, departure_icao CHAR, arrival_icao CHAR, airline_iata CHAR, airline_icao CHAR';
       const sql = `CREATE TABLE IF NOT EXISTS flight (${str})`;
-      const placeholders = '?, ?, ?, ?, ?, ?, ?';
+      const placeholders = '?, ?, ?, ?, ?, ?, ?, ?';
       db.serialize(() => {
         db.run(sql);
         db.run('BEGIN');
@@ -72,7 +72,7 @@ async function flightDbInit() {
             flight, departure, arrival, airline,
           } = val;
           stmt.run(flight.iataNumber, flight.icaoNumber, departure.iataCode, arrival.iataCode,
-            departure.icaoCode, arrival.icaoCode, airline.iataCode);
+            departure.icaoCode, arrival.icaoCode, airline.iataCode, airline.icaoCode);
         });
         stmt.finalize();
         db.run('COMMIT');

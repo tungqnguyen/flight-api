@@ -63,7 +63,6 @@ const airport = {
       // sort by both countries and type of airports
       } else if (typeArr != null && isoCountryArr != null) {
         sql = `SELECT name, icao_code, iata_code, latitude, longitude, iso_country, type, ${distance} AS distance FROM airport WHERE type IN (${typePlaceHolder}) AND iso_country IN (${isoCountryPlaceHolder}) GROUP BY name, icao_code, iata_code, latitude, longitude, iso_country, type, distance ORDER BY distance LIMIT ${limit};`;
-
         params = params.concat(typeArr);
         params = params.concat(isoCountryArr);
       }

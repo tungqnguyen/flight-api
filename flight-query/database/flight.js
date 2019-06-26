@@ -35,6 +35,7 @@ const flight = {
         let departureCoordinate = [];
         const arrivalProperties = {};
         let arrivalCoordinate = [];
+        console.log('rows', rows);
         rows.map((element) => {
           if (element.iata_code == $departureIata || element.icao_code == $departureIcao) {
             departureCoordinate = [element.latitude, element.longitude];
