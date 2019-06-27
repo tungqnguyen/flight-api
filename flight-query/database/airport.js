@@ -90,22 +90,13 @@ const airport = {
         if (error != null) {
           return reject(error);
         }
-        const coordinates = [];
-        airportCodes.map((el, index) => {
-          for (let i = 0; i < rows.length; i += 1) {
-            if (el == rows[i].iata_code || el == rows[i].icao_code) {
-              coordinates.push([rows[i].latitude, rows[i].longitude]);
-              const prop = `point${index + 1}`;
-              response.properties.push({ [prop]: rows[i] });
-              break;
-            }
+        rows.sort((a, b) => {
+          if (airportCodes.indexOf(a.iata_code) < airportCodes.indexOf(b.iata_code)) {
+            return -1;
           }
+          return 1;
         });
-        return (coordinates.length != 0) ? resolve({
-          type: 'LineString',
-          coordinates,
-          ...response,
-        }) : resolve({});
+        resolve(rows);
       });
     });
   },

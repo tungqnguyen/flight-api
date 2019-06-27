@@ -13,7 +13,7 @@ app.get('/airport/:code/', async (req, res) => {
   const { code } = req.params;
   const data = await flightQuery.findAirportInfo(code);
   const keys = Object.keys(data);
-  let response = { $ref: `/${req.originalUrl}` };
+  let response = { $ref: `/${req.originalUrl}`, message: 'OK' };
   if (keys.length != 0) {
     response = {
       ...response,
@@ -53,7 +53,7 @@ app.get('/airport/:code/flights/:type', async (req, res) => {
     // pagination
     const startRecord = Math.max(parseInt(page, 10) - 1, 0) * Math.min(parseInt(limit, 10), data.length);
     const endRecord = startRecord + Math.min(parseInt(limit, 10), data.length - startRecord);
-    if (endRecord == data.length) response.message = 'End of results';
+    if (endRecord == data.length) response.message = 'End of result';
     const paginatedData = data.slice(startRecord, endRecord);
     const results = paginatedData.map((element) => {
       element.flight = { ref: `//flight/${element.flight.icaoNumber}`, ...element.flight };
@@ -65,7 +65,7 @@ app.get('/airport/:code/flights/:type', async (req, res) => {
     });
     response = {
       ...response,
-      results,
+      result: results,
       query: { destCountry, airline },
       total: data.length,
       page,
@@ -87,16 +87,13 @@ app.get('/search/airport', async (req, res) => {
   let typeArr = null;
   if (isoCountry != null) isoCountryArr = isoCountry.split(',');
   if (type != null) typeArr = type.split(',');
-  let response = { $ref: req.originalUrl, message: 'OK' };
+  let response = { $ref: `/${req.originalUrl}`, message: 'OK' };
   const data = await flightQuery.findClosetAirports(lat, lon, { typeArr, isoCountryArr, limit });
   if (Array.isArray(data) && data.length > 0) {
     const results = data.map(element => ({ ref: `//airport/${element.icao_code}`, ...element }));
-    response = { ...response, results };
-  }
-  if (Array.isArray(data) && data.length == 0) {
+    response = { ...response, result: results };
+  } else if (Array.isArray(data) && data.length == 0) {
     response.message = 'No record found';
-  } else {
-    response.message = data;
   }
   res.send(response);
 });
@@ -132,19 +129,45 @@ app.get('/flight/:code', async (req, res) => {
 // For a flight number, return the route as GeoJSON format;
 app.get('/flight/:code/route.geojson', async (req, res) => {
   const { code: flightNo } = req.params;
-  let response = { $ref: `://flight/${flightNo}/route.geojson` };
+  let response = { $ref: `/${req.originalUrl}`, message: 'OK' };
   // array of stops departure and arrival
   const data = await flightQuery.findFlightRouteGeoJson(flightNo);
-  const featureCollection = {
-    type: 'FeatureCollection',
-    features: [
-    ],
-  };
-  const formatData = data.map((stop) => {
-
-  });
-  if (Object.keys(data).length != 0) {
-    response = { ...response, routeGeoJSON: data };
+  // if (Object.keys(data).length != 0) {
+  if (Array.isArray(data) && data.length > 0) {
+    const featureCollection = {
+      type: 'FeatureCollection',
+      features: [],
+    };
+    const lineString = {
+      type: 'Feature',
+      geometry: {
+        type: 'LineString',
+        coordinates: [],
+      },
+      properties: { flightNum: flightNo, route: [] },
+    };
+    // create Points, LineString
+    data.map((stop) => {
+      const feature = {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [stop.longitude, stop.latitude],
+        },
+        properties: { ref: `//airport/${stop.icao_code}` },
+      };
+      lineString.geometry.coordinates.push([stop.longitude, stop.latitude]);
+      lineString.properties.route.push(stop.iata_code);
+      feature.properties.category = 'airport';
+      Object.keys(stop).map((key) => {
+        if (!['latitude', 'longitude', 'home_link', 'wikipedia_link', 'keywords'].includes(key)) {
+          feature.properties[key] = stop[key];
+        }
+      });
+      featureCollection.features.push(feature);
+    });
+    featureCollection.features.push(lineString);
+    response = { ...response, result: featureCollection };
   } else {
     response.message = 'No record found';
   }
@@ -153,10 +176,60 @@ app.get('/flight/:code/route.geojson', async (req, res) => {
 // For a flight number, provide the location of the plane on the route as GeoJSON Point;
 app.get('/flight/:code/live.geojson', async (req, res) => {
   const { code: iataCode } = req.params;
-  let response = { $ref: `://flight/${iataCode}/live.geojson` };
+  let response = { $ref: `/${req.originalUrl}`, message: 'OK' };
   const data = await flightQuery.findFlightLocation(iataCode);
   if (typeof data === 'object' && Object.keys(data).length != 0) {
-    response = { ...response, currentLocation: data };
+    // flatten object
+    const featureCollection = {
+      type: 'FeatureCollection',
+      features: [],
+    };
+    const lineString = {
+      type: 'Feature',
+      geometry: {
+        type: 'LineString',
+        coordinates: [],
+      },
+    };
+    // add Points
+    [data.departure, data.arrival, data.geography].map((stop, i) => {
+      const feature = {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [stop.longitude, stop.latitude],
+        },
+        // properties: { ref: `//airport/${stop.icao_code}` },
+        properties: {},
+      };
+      // if a live location
+      if (i == 2) {
+        feature.properties.category = 'airplane';
+        Object.keys(data).map((propObjectKey) => {
+          if (!['arrival', 'departure', 'geography', 'status'].includes(propObjectKey)) {
+            // prefix key
+            Object.keys(data[propObjectKey]).map((key) => {
+              const keyName = `${propObjectKey}${key[0].toUpperCase()}${key.slice(1)}`;
+              feature.properties[keyName] = data[propObjectKey][key];
+            });
+          }
+        });
+      // if it is an airport Point
+      } else {
+        feature.properties.ref = `//airport/${stop.icaoCode}`;
+        feature.properties.category = 'airport';
+        Object.keys(stop).map((key) => {
+          if (!['latitude', 'longitude', 'home_link', 'wikipedia_link', 'keywords'].includes(key)) {
+            feature.properties[key] = stop[key];
+          }
+        });
+        lineString.geometry.coordinates.push([stop.longitude, stop.latitude]);
+      }
+      featureCollection.features.push(feature);
+    });
+    featureCollection.features.push(lineString);
+    const result = featureCollection;
+    response = { ...response, result };
   } else {
     response.message = data;
   }
@@ -173,7 +246,38 @@ app.get('/search/flight/route/', async (req, res) => {
   }
   const data = await flightQuery.findAirportsRoute(airportArr);
   if (Object.keys(data).length != 0) {
-    response = { ...response, routes: data };
+    const featureCollection = {
+      type: 'FeatureCollection',
+      features: [],
+    };
+    const lineString = {
+      type: 'Feature',
+      geometry: {
+        type: 'LineString',
+        coordinates: [],
+      },
+      properties: { route: [] },
+    };
+    data.map((stop) => {
+      const feature = {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [stop.longitude, stop.latitude],
+        },
+        properties: { ref: `//airport/${stop.icao_code}` },
+      };
+      lineString.geometry.coordinates.push([stop.longitude, stop.latitude]);
+      lineString.properties.route.push(stop.iata_code);
+      Object.keys(stop).map((key) => {
+        if (!['latitude', 'longitude', 'home_link', 'wikipedia_link', 'keywords'].includes(key)) {
+          feature.properties[key] = stop[key];
+        }
+      });
+      featureCollection.features.push(feature);
+    });
+    featureCollection.features.push(lineString);
+    response = { ...response, result: featureCollection };
   } else {
     response.message = 'No record found';
   }

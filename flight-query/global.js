@@ -1,4 +1,4 @@
 const Globals = {
-  key: '4233e3-6eb469',
+  key: '3c98e1-5835fc',
 };
 module.exports = Globals;
