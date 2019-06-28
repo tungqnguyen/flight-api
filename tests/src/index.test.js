@@ -8,524 +8,182 @@ const globals = require('../../flight-query/global');
 const KEY = globals.key;
 const URL = 'http://aviation-edge.com';
 
-// Remember to turn on server.js before testing
+// run express and redis server before testing
+
+// //airport/CODE
 describe('Retrieve airport info', () => {
   test('give a valid aiport iata code', async () => {
     const response = await request(app).get('/airport/PEK');
     expect(JSON.parse(response.res.text)).toEqual({
-      $ref: '://airport/PEK',
-      position: [40.080101013183594, 116.58499908447266],
-      attributes: [{ id: '27188' }, { icao_code: 'ZBAA' }, { type: 'large_airport' }, { elevation_ft: '116' }, { continent: 'AS' }, { iso_country: 'CN' }, { iso_region: 'CN-11' }, { municipality: 'Beijing' }, { scheduled_service: 'yes' }, { gps_code: 'ZBAA' }, { iata_code: 'PEK' }, { local_code: '' }, { home_link: 'http://en.bcia.com.cn/' }, { wikipedia_link: 'http://en.wikipedia.org/wiki/Beijing_Capital_International_Airport' }, { keywords: 'BJS, Bejing, Peking, Olympics' }],
+      $ref: '//airport/PEK', message: 'OK', position: [116.58499908447266, 40.080101013183594], name: 'Beijing Capital International Airport', attributes: [{ attribute: { $ref: '://airport/attribute/id', name: 'id' }, value: '27188' }, { attribute: { $ref: '://airport/attribute/icao_code', name: 'icao_code' }, value: 'ZBAA' }, { attribute: { $ref: '://airport/attribute/type', name: 'type' }, value: 'large_airport' }, { attribute: { $ref: '://airport/attribute/elevation_ft', name: 'elevation_ft' }, value: '116' }, { attribute: { $ref: '://airport/attribute/continent', name: 'continent' }, value: 'AS' }, { attribute: { $ref: '://airport/attribute/iso_country', name: 'iso_country' }, value: 'CN' }, { attribute: { $ref: '://airport/attribute/iso_region', name: 'iso_region' }, value: 'CN-11' }, { attribute: { $ref: '://airport/attribute/municipality', name: 'municipality' }, value: 'Beijing' }, { attribute: { $ref: '://airport/attribute/scheduled_service', name: 'scheduled_service' }, value: 'yes' }, { attribute: { $ref: '://airport/attribute/gps_code', name: 'gps_code' }, value: 'ZBAA' }, { attribute: { $ref: '://airport/attribute/iata_code', name: 'iata_code' }, value: 'PEK' }, { attribute: { $ref: '://airport/attribute/local_code', name: 'local_code' }, value: '' }, { attribute: { $ref: '://airport/attribute/home_link', name: 'home_link' }, value: 'http://en.bcia.com.cn/' }, { attribute: { $ref: '://airport/attribute/wikipedia_link', name: 'wikipedia_link' }, value: 'http://en.wikipedia.org/wiki/Beijing_Capital_International_Airport' }, { attribute: { $ref: '://airport/attribute/keywords', name: 'keywords' }, value: 'BJS, Bejing, Peking, Olympics' }],
     });
   });
   test('give a valid aiport icao code', async () => {
     const response = await request(app).get('/airport/VVTS');
-    expect(JSON.parse(response.res.text)).toEqual({ $ref: '://airport/VVTS', position: [10.8187999725, 106.652000427], attributes: [{ id: '26708' }, { icao_code: 'VVTS' }, { type: 'large_airport' }, { elevation_ft: '33' }, { continent: 'AS' }, { iso_country: 'VN' }, { iso_region: 'VN-23' }, { municipality: 'Ho Chi Minh City' }, { scheduled_service: 'yes' }, { gps_code: 'VVTS' }, { iata_code: 'SGN' }, { local_code: '' }, { home_link: 'http://www.tsnairport.hochiminhcity.gov.vn/' }, { wikipedia_link: 'http://en.wikipedia.org/wiki/Tan_Son_Nhat_International_Airport' }, { keywords: 'Tansonnhat, Sài Gòn, Saigon, Sân bay Quốc tế Tân Sơn Nhất' }] });
+    expect(JSON.parse(response.res.text)).toEqual({
+      $ref: '//airport/VVTS', message: 'OK', position: [106.652000427, 10.8187999725], name: 'Tan Son Nhat International Airport', attributes: [{ attribute: { $ref: '://airport/attribute/id', name: 'id' }, value: '26708' }, { attribute: { $ref: '://airport/attribute/icao_code', name: 'icao_code' }, value: 'VVTS' }, { attribute: { $ref: '://airport/attribute/type', name: 'type' }, value: 'large_airport' }, { attribute: { $ref: '://airport/attribute/elevation_ft', name: 'elevation_ft' }, value: '33' }, { attribute: { $ref: '://airport/attribute/continent', name: 'continent' }, value: 'AS' }, { attribute: { $ref: '://airport/attribute/iso_country', name: 'iso_country' }, value: 'VN' }, { attribute: { $ref: '://airport/attribute/iso_region', name: 'iso_region' }, value: 'VN-23' }, { attribute: { $ref: '://airport/attribute/municipality', name: 'municipality' }, value: 'Ho Chi Minh City' }, { attribute: { $ref: '://airport/attribute/scheduled_service', name: 'scheduled_service' }, value: 'yes' }, { attribute: { $ref: '://airport/attribute/gps_code', name: 'gps_code' }, value: 'VVTS' }, { attribute: { $ref: '://airport/attribute/iata_code', name: 'iata_code' }, value: 'SGN' }, { attribute: { $ref: '://airport/attribute/local_code', name: 'local_code' }, value: '' }, { attribute: { $ref: '://airport/attribute/home_link', name: 'home_link' }, value: 'http://www.tsnairport.hochiminhcity.gov.vn/' }, { attribute: { $ref: '://airport/attribute/wikipedia_link', name: 'wikipedia_link' }, value: 'http://en.wikipedia.org/wiki/Tan_Son_Nhat_International_Airport' }, { attribute: { $ref: '://airport/attribute/keywords', name: 'keywords' }, value: 'Tansonnhat, Sài Gòn, Saigon, Sân bay Quốc tế Tân Sơn Nhất' }],
+    });
   });
   test('give an invalid aiport iata/icao code', async () => {
     const response = await request(app).get('/airport/00AAAA');
-    expect(JSON.parse(response.res.text)).toEqual({ $ref: '://airport/00AAAA', message: 'No record found' });
+    expect(JSON.parse(response.res.text)).toEqual({
+      $ref: '//airport/00AAAA',
+      message: 'No record found',
+    });
   });
 });
 
+// flight/CODE, flight/CODE/route.geojson
 describe('Retrieve route information from today\'s flight number', () => {
   test('give valid flight number', async () => {
     // const data = await flightQuery.findFlightRoute('LAN530');
     const response = await request(app).get('/flight/LAN530');
-
     expect(JSON.parse(response.res.text)).toEqual({
       $ref: '://flight/LAN530',
-      route: {
-        flight_iata: 'LA530',
-        flight_icao: 'LAN530',
-        departure_iata: 'LIM',
-        arrival_iata: 'JFK',
-        departure_icao: 'SPIM',
-        arrival_icao: 'KJFK',
-        airline_iata: 'LA',
+      result: {
+        iata: 'LA530', icao: 'LAN530', airlineIata: 'LA', airlineIcao: 'LAN', stops: [{ ref: '://airport/SCL', iataCode: 'SCL', icaoCode: 'SCL' }, { ref: '://airport/LIM', iataCode: 'LIM', icaoCode: 'LIM' }],
       },
     });
   });
   test('give invalid flight number', async () => {
-    const response = await request(app).get('/flight/SK26456');
-    expect(JSON.parse(response.res.text)).toEqual({ $ref: '://flight/SK26456', message: 'No record found' });
+    const response = await request(app).get('/flight/SKS');
+    expect(JSON.parse(response.res.text)).toEqual({ $ref: '://flight/SKS', message: 'No record found' });
   });
   test('give valid flight number and return GeoJSON format', async () => {
     const response = await request(app).get('/flight/LAN530/route.geojson');
-
     expect(JSON.parse(response.res.text)).toEqual({
-      $ref: '://flight/LAN530/route.geojson',
-      routeGeoJSON: {
-        type: 'LineString',
-        coordinates: [
-          [
-            -12.0219,
-            -77.114305,
-          ],
-          [
-            40.63980103,
-            -73.77890015,
-          ],
-        ],
-        properties: [
-          {
-            departureProperties: {
-              id: '6217',
-              icao_code: 'SPIM',
-              type: 'large_airport',
-              name: 'Jorge Chávez International Airport',
-              latitude: -12.0219,
-              longitude: -77.114305,
-              elevation_ft: '113',
-              continent: 'SA',
-              iso_country: 'PE',
-              iso_region: 'PE-LIM',
-              municipality: 'Lima',
-              scheduled_service: 'yes',
-              gps_code: 'SPJC',
-              iata_code: 'LIM',
-              local_code: '',
-              home_link: 'http://www.lap.com.pe/',
-              wikipedia_link: 'https://en.wikipedia.org/wiki/Jorge_Ch%C3%A1vez_International_Airport',
-              keywords: 'SPIM',
-            },
+      $ref: '//flight/LAN530/route.geojson',
+      message: 'OK',
+      result: {
+        type: 'FeatureCollection',
+        features: [{
+          type: 'Feature',
+          geometry: { type: 'Point', coordinates: [-70.78579711914062, -33.393001556396484] },
+          properties: {
+            ref: '//airport/SCEL', category: 'airport', id: '6015', icao_code: 'SCEL', type: 'large_airport', name: 'Comodoro Arturo Merino Benítez International Airport', elevation_ft: '1555', continent: 'SA', iso_country: 'CL', iso_region: 'CL-RM', municipality: 'Santiago', scheduled_service: 'yes', gps_code: 'SCEL', iata_code: 'SCL', local_code: '',
           },
-          {
-            arrivalProperties: {
-              id: '3622',
-              icao_code: 'KJFK',
-              type: 'large_airport',
-              name: 'John F Kennedy International Airport',
-              latitude: 40.63980103,
-              longitude: -73.77890015,
-              elevation_ft: '13',
-              continent: 'NA',
-              iso_country: 'US',
-              iso_region: 'US-NY',
-              municipality: 'New York',
-              scheduled_service: 'yes',
-              gps_code: 'KJFK',
-              iata_code: 'JFK',
-              local_code: 'JFK',
-              home_link: 'http://www.panynj.gov/CommutingTravel/airports/html/kennedy.html',
-              wikipedia_link: 'http://en.wikipedia.org/wiki/John_F._Kennedy_International_Airport',
-              keywords: 'Manhattan, New York City, NYC, Idlewild',
-            },
+        }, {
+          type: 'Feature',
+          geometry: { type: 'Point', coordinates: [-77.114305, -12.0219] },
+          properties: {
+            ref: '//airport/SPIM', category: 'airport', id: '6217', icao_code: 'SPIM', type: 'large_airport', name: 'Jorge Chávez International Airport', elevation_ft: '113', continent: 'SA', iso_country: 'PE', iso_region: 'PE-LIM', municipality: 'Lima', scheduled_service: 'yes', gps_code: 'SPJC', iata_code: 'LIM', local_code: '',
           },
-        ],
+        }, { type: 'Feature', geometry: { type: 'LineString', coordinates: [[-70.78579711914062, -33.393001556396484], [-77.114305, -12.0219]] }, properties: { flightNum: 'LAN530', route: ['SCL', 'LIM'] } }],
       },
     });
   });
   test('give an invalid flight number and return empty object', async () => {
     const response = await request(app).get('/flight/CM27655/route.geojson');
-
     expect(JSON.parse(response.res.text)).toEqual({
-      $ref: '://flight/CM27655/route.geojson',
+      $ref: '//flight/CM27655/route.geojson',
       message: 'No record found',
     });
   });
 });
 
+// //search/airport/?lat=&lon=
 describe('Show nearby airports on given lat/lon', () => {
   test('give valid lat/lon pair', async () => {
     const response = await request(app).get('/search/airport/?lat=-37.8034129&lon=144.9997052');
-
     expect(JSON.parse(response.res.text)).toEqual({
-      $ref: '://search/airport/?lat=-37.8034129&lon=144.9997052&isoCountry=null&type=null',
-      airports: [
-        {
-          name: 'Royal Melbourne Hospital Helipad',
-          icao_code: 'YRMH',
-          iata_code: '',
-          latitude: -37.799243,
-          longitude: 144.95593,
-          iso_country: 'AU',
-          type: 'heliport',
-          distance: 3.873922320846621,
-        },
-        {
-          name: 'Yarra Bank Heliport',
-          icao_code: 'YYBK',
-          iata_code: '',
-          latitude: -37.822287,
-          longitude: 144.956792,
-          iso_country: 'AU',
-          type: 'heliport',
-          distance: 4.314577281723933,
-        },
-        {
-          name: 'Royal Childrens Hospital Helipad',
-          icao_code: 'YRHO',
-          iata_code: '',
-          latitude: -37.794058,
-          longitude: 144.951309,
-          iso_country: 'AU',
-          type: 'heliport',
-          distance: 4.377607450520195,
-        },
-      ],
-      message: [
-        {
-          name: 'Royal Melbourne Hospital Helipad',
-          icao_code: 'YRMH',
-          iata_code: '',
-          latitude: -37.799243,
-          longitude: 144.95593,
-          iso_country: 'AU',
-          type: 'heliport',
-          distance: 3.873922320846621,
-        },
-        {
-          name: 'Yarra Bank Heliport',
-          icao_code: 'YYBK',
-          iata_code: '',
-          latitude: -37.822287,
-          longitude: 144.956792,
-          iso_country: 'AU',
-          type: 'heliport',
-          distance: 4.314577281723933,
-        },
-        {
-          name: 'Royal Childrens Hospital Helipad',
-          icao_code: 'YRHO',
-          iata_code: '',
-          latitude: -37.794058,
-          longitude: 144.951309,
-          iso_country: 'AU',
-          type: 'heliport',
-          distance: 4.377607450520195,
-        },
-      ],
+      $ref: '//search/airport/?lat=-37.8034129&lon=144.9997052',
+      message: 'OK',
+      result: [{
+        ref: '//airport/YRMH', name: 'Royal Melbourne Hospital Helipad', icao_code: 'YRMH', iata_code: '', latitude: -37.799243, longitude: 144.95593, iso_country: 'AU', type: 'heliport', distance: 3.873922320846621,
+      }, {
+        ref: '//airport/YYBK', name: 'Yarra Bank Heliport', icao_code: 'YYBK', iata_code: '', latitude: -37.822287, longitude: 144.956792, iso_country: 'AU', type: 'heliport', distance: 4.314577281723933,
+      }, {
+        ref: '//airport/YRHO', name: 'Royal Childrens Hospital Helipad', icao_code: 'YRHO', iata_code: '', latitude: -37.794058, longitude: 144.951309, iso_country: 'AU', type: 'heliport', distance: 4.377607450520195,
+      }],
     });
   });
   test('give invalid lat/lon pair', async () => {
     const response = await request(app).get('/search/airport/?lat=-37.8034129d&lon=144.9997052fd');
-    expect(JSON.parse(response.res.text)).toEqual({
-      $ref: '://search/airport/?lat=-37.8034129d&lon=144.9997052fd&isoCountry=null&type=null',
-      message: 'Please enter a valid lat lon',
-    });
+    expect(JSON.parse(response.res.text)).toEqual({ $ref: '//search/airport/?lat=-37.8034129d&lon=144.9997052fd', message: 'Please enter a valid lat lon' });
   });
   test('filtered by type', async () => {
     const response = await request(app).get('/search/airport/?lat=-37.8034129&lon=144.9997052&type=small_airport');
     expect(JSON.parse(response.res.text)).toEqual({
-      $ref: '://search/airport/?lat=-37.8034129&lon=144.9997052&isoCountry=null&type=small_airport',
-      airports: [
-        {
-          name: 'RAAF Williams, Point Cook Base',
-          icao_code: 'YMPC',
-          iata_code: '',
-          latitude: -37.932201,
-          longitude: 144.753006,
-          iso_country: 'AU',
-          type: 'small_airport',
-          distance: 25.962161953830623,
-        },
-        {
-          name: 'Lilydale Airport',
-          icao_code: 'YLIL',
-          iata_code: '',
-          latitude: -37.69169998168945,
-          longitude: 145.36700439453125,
-          iso_country: 'AU',
-          type: 'small_airport',
-          distance: 34.60087620462142,
-        },
-        {
-          name: 'Coldstream Airport',
-          icao_code: 'YCEM',
-          iata_code: '',
-          latitude: -37.72766876220703,
-          longitude: 145.4083709716797,
-          iso_country: 'AU',
-          type: 'small_airport',
-          distance: 36.89672514489765,
-        },
-      ],
-      message: [
-        {
-          name: 'RAAF Williams, Point Cook Base',
-          icao_code: 'YMPC',
-          iata_code: '',
-          latitude: -37.932201,
-          longitude: 144.753006,
-          iso_country: 'AU',
-          type: 'small_airport',
-          distance: 25.962161953830623,
-        },
-        {
-          name: 'Lilydale Airport',
-          icao_code: 'YLIL',
-          iata_code: '',
-          latitude: -37.69169998168945,
-          longitude: 145.36700439453125,
-          iso_country: 'AU',
-          type: 'small_airport',
-          distance: 34.60087620462142,
-        },
-        {
-          name: 'Coldstream Airport',
-          icao_code: 'YCEM',
-          iata_code: '',
-          latitude: -37.72766876220703,
-          longitude: 145.4083709716797,
-          iso_country: 'AU',
-          type: 'small_airport',
-          distance: 36.89672514489765,
-        },
-      ],
+      $ref: '//search/airport/?lat=-37.8034129&lon=144.9997052&type=small_airport',
+      message: 'OK',
+      result: [{
+        ref: '//airport/YMPC', name: 'RAAF Williams, Point Cook Base', icao_code: 'YMPC', iata_code: '', latitude: -37.932201, longitude: 144.753006, iso_country: 'AU', type: 'small_airport', distance: 25.962161953830623,
+      }, {
+        ref: '//airport/YLIL', name: 'Lilydale Airport', icao_code: 'YLIL', iata_code: '', latitude: -37.69169998168945, longitude: 145.36700439453125, iso_country: 'AU', type: 'small_airport', distance: 34.60087620462142,
+      }, {
+        ref: '//airport/YCEM', name: 'Coldstream Airport', icao_code: 'YCEM', iata_code: '', latitude: -37.72766876220703, longitude: 145.4083709716797, iso_country: 'AU', type: 'small_airport', distance: 36.89672514489765,
+      }],
     });
   });
   test('filtered by isoCountry', async () => {
     const response = await request(app).get('/search/airport/?lat=-37.8034129&lon=144.9997052&isoCountry=VN');
     expect(JSON.parse(response.res.text)).toEqual({
-      $ref: '://search/airport/?lat=-37.8034129&lon=144.9997052&isoCountry=VN&type=null',
-      airports: [
-        {
-          name: "Pearson Reef 'B' Helipad",
-          icao_code: 'VN-0009',
-          iata_code: '',
-          latitude: 8.959083,
-          longitude: 113.653409,
-          iso_country: 'VN',
-          type: 'heliport',
-          distance: 6134.926665709097,
-        },
-        {
-          name: 'Truong Sa Airport',
-          icao_code: 'VN-0005',
-          iata_code: '',
-          latitude: 8.644541,
-          longitude: 111.920347,
-          iso_country: 'VN',
-          type: 'small_airport',
-          distance: 6202.222101508816,
-        },
-        {
-          name: 'West London Reef Helipad',
-          icao_code: 'VN-0007',
-          iata_code: '',
-          latitude: 8.845476,
-          longitude: 112.195874,
-          iso_country: 'VN',
-          type: 'heliport',
-          distance: 6205.581345286226,
-        },
-      ],
-      message: [
-        {
-          name: "Pearson Reef 'B' Helipad",
-          icao_code: 'VN-0009',
-          iata_code: '',
-          latitude: 8.959083,
-          longitude: 113.653409,
-          iso_country: 'VN',
-          type: 'heliport',
-          distance: 6134.926665709097,
-        },
-        {
-          name: 'Truong Sa Airport',
-          icao_code: 'VN-0005',
-          iata_code: '',
-          latitude: 8.644541,
-          longitude: 111.920347,
-          iso_country: 'VN',
-          type: 'small_airport',
-          distance: 6202.222101508816,
-        },
-        {
-          name: 'West London Reef Helipad',
-          icao_code: 'VN-0007',
-          iata_code: '',
-          latitude: 8.845476,
-          longitude: 112.195874,
-          iso_country: 'VN',
-          type: 'heliport',
-          distance: 6205.581345286226,
-        },
-      ],
+      $ref: '//search/airport/?lat=-37.8034129&lon=144.9997052&isoCountry=VN',
+      message: 'OK',
+      result: [{
+        ref: '//airport/VN-0009', name: "Pearson Reef 'B' Helipad", icao_code: 'VN-0009', iata_code: '', latitude: 8.959083, longitude: 113.653409, iso_country: 'VN', type: 'heliport', distance: 6134.926665709097,
+      }, {
+        ref: '//airport/VN-0005', name: 'Truong Sa Airport', icao_code: 'VN-0005', iata_code: '', latitude: 8.644541, longitude: 111.920347, iso_country: 'VN', type: 'small_airport', distance: 6202.222101508816,
+      }, {
+        ref: '//airport/VN-0007', name: 'West London Reef Helipad', icao_code: 'VN-0007', iata_code: '', latitude: 8.845476, longitude: 112.195874, iso_country: 'VN', type: 'heliport', distance: 6205.581345286226,
+      }],
     });
   });
   test('filtered by invalid type', async () => {
     const response = await request(app).get('/search/airport/?lat=-37.8034129&lon=144.9997052&type=massive_airport');
-    expect(JSON.parse(response.res.text)).toEqual({
-      $ref: '://search/airport/?lat=-37.8034129&lon=144.9997052&isoCountry=null&type=massive_airport',
-      message: 'No record found',
-    });
+    expect(JSON.parse(response.res.text)).toEqual({ $ref: '//search/airport/?lat=-37.8034129&lon=144.9997052&type=massive_airport', message: 'No record found' });
   });
   test('filtered by invalid isoCountry', async () => {
     const response = await request(app).get('/search/airport/?lat=-37.8034129&lon=144.9997052&isoCountry=NN');
-    expect(JSON.parse(response.res.text)).toEqual({
-      $ref: '://search/airport/?lat=-37.8034129&lon=144.9997052&isoCountry=NN&type=null',
-      message: 'No record found',
-    });
+    expect(JSON.parse(response.res.text)).toEqual({ $ref: '//search/airport/?lat=-37.8034129&lon=144.9997052&isoCountry=NN', message: 'No record found' });
   });
   test('filtered by type and isoCountry ', async () => {
     const response = await request(app).get('/search/airport/?lat=-37.8034129&lon=144.9997052&isoCountry=TH&type=large_airport');
     expect(JSON.parse(response.res.text)).toEqual({
-      $ref: '://search/airport/?lat=-37.8034129&lon=144.9997052&isoCountry=TH&type=large_airport',
-      airports: [
-        {
-          name: 'Phuket International Airport',
-          icao_code: 'VTSP',
-          iata_code: 'HKT',
-          latitude: 8.1132,
-          longitude: 98.316902,
-          iso_country: 'TH',
-          type: 'large_airport',
-          distance: 7032.930640012764,
-        },
-        {
-          name: 'Suvarnabhumi Airport',
-          icao_code: 'VTBS',
-          iata_code: 'BKK',
-          latitude: 13.681099891662598,
-          longitude: 100.74700164794922,
-          iso_country: 'TH',
-          type: 'large_airport',
-          distance: 7351.628321373397,
-        },
-        {
-          name: 'Don Mueang International Airport',
-          icao_code: 'VTBD',
-          iata_code: 'DMK',
-          latitude: 13.9125995636,
-          longitude: 100.607002258,
-          iso_country: 'TH',
-          type: 'large_airport',
-          distance: 7381.279016328488,
-        },
-      ],
-      message: [
-        {
-          name: 'Phuket International Airport',
-          icao_code: 'VTSP',
-          iata_code: 'HKT',
-          latitude: 8.1132,
-          longitude: 98.316902,
-          iso_country: 'TH',
-          type: 'large_airport',
-          distance: 7032.930640012764,
-        },
-        {
-          name: 'Suvarnabhumi Airport',
-          icao_code: 'VTBS',
-          iata_code: 'BKK',
-          latitude: 13.681099891662598,
-          longitude: 100.74700164794922,
-          iso_country: 'TH',
-          type: 'large_airport',
-          distance: 7351.628321373397,
-        },
-        {
-          name: 'Don Mueang International Airport',
-          icao_code: 'VTBD',
-          iata_code: 'DMK',
-          latitude: 13.9125995636,
-          longitude: 100.607002258,
-          iso_country: 'TH',
-          type: 'large_airport',
-          distance: 7381.279016328488,
-        },
-      ],
+      $ref: '//search/airport/?lat=-37.8034129&lon=144.9997052&isoCountry=TH&type=large_airport',
+      message: 'OK',
+      result: [{
+        ref: '//airport/VTSP', name: 'Phuket International Airport', icao_code: 'VTSP', iata_code: 'HKT', latitude: 8.1132, longitude: 98.316902, iso_country: 'TH', type: 'large_airport', distance: 7032.930640012764,
+      }, {
+        ref: '//airport/VTBS', name: 'Suvarnabhumi Airport', icao_code: 'VTBS', iata_code: 'BKK', latitude: 13.681099891662598, longitude: 100.74700164794922, iso_country: 'TH', type: 'large_airport', distance: 7351.628321373397,
+      }, {
+        ref: '//airport/VTBD', name: 'Don Mueang International Airport', icao_code: 'VTBD', iata_code: 'DMK', latitude: 13.9125995636, longitude: 100.607002258, iso_country: 'TH', type: 'large_airport', distance: 7381.279016328488,
+      }],
     });
   });
   test('give invalid type and isoCountry', async () => {
     const response = await request(app).get('/search/airport/?lat=-37.8034129&lon=144.9997052&isoCountry=CTT&type=extra_large_airport');
-    expect(JSON.parse(response.res.text)).toEqual({
-      $ref: '://search/airport/?lat=-37.8034129&lon=144.9997052&isoCountry=CTT&type=extra_large_airport',
-      message: 'No record found',
-    });
+    expect(JSON.parse(response.res.text)).toEqual({ $ref: '//search/airport/?lat=-37.8034129&lon=144.9997052&isoCountry=CTT&type=extra_large_airport', message: 'No record found' });
   });
 });
+
+// search/flight/route?airports=x,y,z
 describe('Return GeoJSON object for a series of airport codes', () => {
   test('give valid airport codes', async () => {
     const response = await request(app).get('/search/flight/route?airports=MEL,SYD,PEK');
     expect(JSON.parse(response.res.text)).toEqual({
       $ref: '://search/flight/route?airports=MEL,SYD,PEK',
-      routes: {
-        type: 'LineString',
-        coordinates: [
-          [
-            -37.673302,
-            144.843002,
-          ],
-          [
-            -33.94609832763672,
-            151.177001953125,
-          ],
-          [
-            40.080101013183594,
-            116.58499908447266,
-          ],
-        ],
-        properties: [
-          {
-            point1: {
-              id: '27066',
-              icao_code: 'YMML',
-              type: 'large_airport',
-              name: 'Melbourne International Airport',
-              latitude: -37.673302,
-              longitude: 144.843002,
-              elevation_ft: '434',
-              continent: 'OC',
-              iso_country: 'AU',
-              iso_region: 'AU-VIC',
-              municipality: 'Melbourne',
-              scheduled_service: 'yes',
-              gps_code: 'YMML',
-              iata_code: 'MEL',
-              local_code: '',
-              home_link: 'http://melbourneairport.com.au/',
-              wikipedia_link: 'http://en.wikipedia.org/wiki/Melbourne_Airport',
-              keywords: '',
-            },
+      result: {
+        type: 'FeatureCollection',
+        features: [{
+          type: 'Feature',
+          geometry: { type: 'Point', coordinates: [144.843002, -37.673302] },
+          properties: {
+            ref: '//airport/YMML', id: '27066', icao_code: 'YMML', type: 'large_airport', name: 'Melbourne International Airport', elevation_ft: '434', continent: 'OC', iso_country: 'AU', iso_region: 'AU-VIC', municipality: 'Melbourne', scheduled_service: 'yes', gps_code: 'YMML', iata_code: 'MEL', local_code: '',
           },
-          {
-            point2: {
-              id: '27145',
-              icao_code: 'YSSY',
-              type: 'large_airport',
-              name: 'Sydney Kingsford Smith International Airport',
-              latitude: -33.94609832763672,
-              longitude: 151.177001953125,
-              elevation_ft: '21',
-              continent: 'OC',
-              iso_country: 'AU',
-              iso_region: 'AU-NSW',
-              municipality: 'Sydney',
-              scheduled_service: 'yes',
-              gps_code: 'YSSY',
-              iata_code: 'SYD',
-              local_code: '',
-              home_link: 'http://www.sydneyairport.com.au/',
-              wikipedia_link: 'http://en.wikipedia.org/wiki/Kingsford_Smith_International_Airport',
-              keywords: 'RAAF Station Mascot',
-            },
+        }, {
+          type: 'Feature',
+          geometry: { type: 'Point', coordinates: [151.177001953125, -33.94609832763672] },
+          properties: {
+            ref: '//airport/YSSY', id: '27145', icao_code: 'YSSY', type: 'large_airport', name: 'Sydney Kingsford Smith International Airport', elevation_ft: '21', continent: 'OC', iso_country: 'AU', iso_region: 'AU-NSW', municipality: 'Sydney', scheduled_service: 'yes', gps_code: 'YSSY', iata_code: 'SYD', local_code: '',
           },
-          {
-            point3: {
-              id: '27188',
-              icao_code: 'ZBAA',
-              type: 'large_airport',
-              name: 'Beijing Capital International Airport',
-              latitude: 40.080101013183594,
-              longitude: 116.58499908447266,
-              elevation_ft: '116',
-              continent: 'AS',
-              iso_country: 'CN',
-              iso_region: 'CN-11',
-              municipality: 'Beijing',
-              scheduled_service: 'yes',
-              gps_code: 'ZBAA',
-              iata_code: 'PEK',
-              local_code: '',
-              home_link: 'http://en.bcia.com.cn/',
-              wikipedia_link: 'http://en.wikipedia.org/wiki/Beijing_Capital_International_Airport',
-              keywords: 'BJS, Bejing, Peking, Olympics',
-            },
+        }, {
+          type: 'Feature',
+          geometry: { type: 'Point', coordinates: [116.58499908447266, 40.080101013183594] },
+          properties: {
+            ref: '//airport/ZBAA', id: '27188', icao_code: 'ZBAA', type: 'large_airport', name: 'Beijing Capital International Airport', elevation_ft: '116', continent: 'AS', iso_country: 'CN', iso_region: 'CN-11', municipality: 'Beijing', scheduled_service: 'yes', gps_code: 'ZBAA', iata_code: 'PEK', local_code: '',
           },
-        ],
+        }, { type: 'Feature', geometry: { type: 'LineString', coordinates: [[144.843002, -37.673302], [151.177001953125, -33.94609832763672], [116.58499908447266, 40.080101013183594]] }, properties: { route: ['MEL', 'SYD', 'PEK'] } }],
       },
     });
   });
@@ -533,137 +191,100 @@ describe('Return GeoJSON object for a series of airport codes', () => {
     const response = await request(app).get('/search/flight/route?airports=MEL,SYD,PEKNN');
     expect(JSON.parse(response.res.text)).toEqual({
       $ref: '://search/flight/route?airports=MEL,SYD,PEKNN',
-      routes: 'No route found',
+      message: 'No route found',
     });
   });
   test('give only one airport code', async () => {
     const response = await request(app).get('/search/flight/route?airports=MEL');
-    expect(JSON.parse(response.res.text)).toEqual({
-      $ref: '://search/flight/route?airports=MEL',
-      message: 'Please enter a series of airport codes',
-    });
+    expect(JSON.parse(response.res.text)).toEqual({ $ref: '://search/flight/route?airports=MEL', message: 'Please enter a series of airport codes' });
   });
 });
+
+// airport/CODE/flights/TYPE
 describe('Given airport code, look up all flights', () => {
   test('give airport code', async () => {
     nock(URL)
       .get(`/v2/public/timetable?key=${KEY}&iataCode=SGN&type=departure`)
       .reply(200, testData.allFlights);
-    const response = await request(app).get('/airport/SGN/flights');
-    expect(JSON.parse(response.res.text)).toEqual({
-      $ref: '://airport/SGN?airline=null&type=departure&destCountry=null',
-      flights: testData.allFlights,
-    });
+    const response = await request(app).get('/airport/SGN/flights/departure');
+    expect(JSON.parse(response.res.text)).toEqual(testData.paginatedDepartureFlightsRes);
   });
   test('give invalid airport codes', async () => {
     nock(URL)
-      .get(`/v2/public/timetable?key=${KEY}&iataCode=SGNNN&type=departure`)
-      .reply(200, []);
-    const response = await request(app).get('/airport/SGNNN/flights');
-    expect(JSON.parse(response.res.text)).toEqual({
-      $ref: '://airport/SGNNN?airline=null&type=departure&destCountry=null',
-      message: 'No record found',
-    });
+      .get(`/v2/public/timetable?key=${KEY}&iataCode=VATT&type=departure`)
+      .reply(200, { error: { text: 'No Record Found' } });
+    const response = await request(app).get('/airport/VATT/flights/departure');
+    expect(JSON.parse(response.res.text)).toEqual({ $ref: '//airport/VATT/flights/departure', message: 'No record found' });
   });
   test('filtered by airline', async () => {
     nock(URL)
       .get(`/v2/public/timetable?key=${KEY}&iataCode=SGN&type=departure`)
       .reply(200, testData.allFlights);
-    const response = await request(app).get('/airport/SGN/flights?airline=VJ');
-    expect(JSON.parse(response.res.text)).toEqual(testData.filteredByAirlineResponseData);
+    const response = await request(app).get('/airport/SGN/flights/departure/?airline=VJ');
+    expect(JSON.parse(response.res.text)).toEqual(testData.filteredByAirlineRes);
   });
   test('filtered by invalid airline', async () => {
     nock(URL)
       .get(`/v2/public/timetable?key=${KEY}&iataCode=SGN&type=departure`)
       .reply(200, testData.allFlights);
-    const response = await request(app).get('/airport/SGN/flights?airline=VJEE');
-    expect(JSON.parse(response.res.text)).toEqual({
-      $ref: '://airport/SGN?airline=VJEE&type=departure&destCountry=null',
-      message: 'No record found',
-    });
+    const response = await request(app).get('/airport/SGN/flights/departure/?airline=VJEE');
+    expect(JSON.parse(response.res.text)).toEqual({ $ref: '//airport/SGN/flights/departure/?airline=VJEE', message: 'No record found' });
   });
   test('filtered by destCountry', async () => {
     nock(URL)
       .get(`/v2/public/timetable?key=${KEY}&iataCode=SGN&type=departure`)
       .reply(200, testData.allFlights);
-    const response = await request(app).get('/airport/SGN/flights?destCountry=CN');
-    expect(JSON.parse(response.res.text)).toEqual(testData.filteredByCountryResponseData);
+    const response = await request(app).get('/airport/SGN/flights/departure/?destCountry=CN');
+    expect(JSON.parse(response.res.text)).toEqual(testData.filteredByCountryRes);
   });
   test('filtered by invalid destCountry', async () => {
     nock(URL)
       .get(`/v2/public/timetable?key=${KEY}&iataCode=SGN&type=departure`)
       .reply(200, testData.allFlights);
-    const response = await request(app).get('/airport/SGN/flights?destCountry=CNN');
-    expect(JSON.parse(response.res.text)).toEqual({
-      $ref: '://airport/SGN?airline=null&type=departure&destCountry=CNN',
-      message: 'No record found',
-    });
+    const response = await request(app).get('/airport/SGN/flights/departure/?destCountry=CNN');
+    expect(JSON.parse(response.res.text)).toEqual({ $ref: '//airport/SGN/flights/departure/?destCountry=CNN', message: 'No record found' });
   });
 });
+
+// flight/CODE/live.geojson
 describe('Given flight number, return live location', () => {
   test('give on air flight number', async () => {
     nock(URL)
-      .get(`/v2/public/flights?key=${KEY}&flightIata=ID6262`)
+      .get(`/v2/public/flights?key=${KEY}&flightIata=IB6841`)
       .reply(200, testData.liveFlights);
-    const response = await request(app).get('/flight/ID6262/live.geojson');
+    const response = await request(app).get('/flight/IB6841/live.geojson');
     expect(JSON.parse(response.res.text)).toEqual({
-      $ref: '://flight/ID6262/live.geojson',
-      currentLocation:
-     {
-       type: 'Point',
-       coordinates: [-6.25443, 113.608],
-       properties: [{
-         aircraft: {
-           iataCode: 'CRJX',
-           icao24: '8A0337',
-           icaoCode: 'CRJX',
-           regNumber: 'PKGRC',
-         },
-         airline: {
-           iataCode: 'ID',
-           icaoCode: 'BTK',
-         },
-         arrival: {
-           iataCode: 'UPG',
-           icaoCode: 'UPG',
-         },
-         departure: {
-           iataCode: 'CGK',
-           icaoCode: 'CGK',
-         },
-         flight: {
-           iataNumber: 'ID6262',
-           icaoNumber: 'BTK6262',
-           number: '6262',
-         },
-         geography: {
-           altitude: 10058.4,
-           direction: 80,
-           latitude: -6.25443,
-           longitude: 113.608,
-         },
-         speed: {
-           horizontal: 859.328,
-           isGround: 0,
-           vertical: 0,
-         },
-         status: 'en-route',
-         system: {
-           squawk: '0',
-           updated: '1560826412',
-         },
-       }],
-     },
+      $ref: '//flight/IB6841/live.geojson',
+      message: 'OK',
+      result: {
+        type: 'FeatureCollection',
+        features: [{
+          type: 'Feature',
+          geometry: { type: 'Point', coordinates: [-3.56264, 40.471926] },
+          properties: {
+            ref: '//airport/MAD', category: 'airport', iataCode: 'MAD', icaoCode: 'MAD', type: 'large_airport', name: 'Adolfo Suárez Madrid–Barajas Airport', elevation_ft: '1998', continent: 'EU', iso_country: 'ES', iso_region: 'ES-M', municipality: 'Madrid', scheduled_service: 'yes', gps_code: 'LEMD', local_code: '',
+          },
+        }, {
+          type: 'Feature',
+          geometry: { type: 'Point', coordinates: [-58.5358, -34.8222] },
+          properties: {
+            ref: '//airport/EZE', category: 'airport', iataCode: 'EZE', icaoCode: 'EZE', type: 'large_airport', name: 'Ministro Pistarini International Airport', elevation_ft: '67', continent: 'SA', iso_country: 'AR', iso_region: 'AR-B', municipality: 'Buenos Aires', scheduled_service: 'yes', gps_code: 'SAEZ', local_code: 'EZE',
+          },
+        }, {
+          type: 'Feature',
+          geometry: { type: 'Point', coordinates: [-14.6707, 27.5138] },
+          properties: {
+            category: 'airplane', speedHorizontal: 887.108, speedIsGround: 0, speedVertical: 0, aircraftRegNumber: 'ECNBE', aircraftIcaoCode: 'A359', aircraftIcao24: '346146', aircraftIataCode: 'A359', airlineIataCode: 'IB', airlineIcaoCode: 'IBE', flightIataNumber: 'IB6841', flightIcaoNumber: 'IBE6841', flightNumber: '6841', systemUpdated: '1561595967', systemSquawk: '0',
+          },
+        }, { type: 'Feature', geometry: { type: 'LineString', coordinates: [[-3.56264, 40.471926], [-58.5358, -34.8222]] } }],
+      },
     });
   });
   test('flight number that does not exist in database or incorrect', async () => {
     nock(URL)
-      .get(`/v2/public/flights?key=${KEY}&flightIata=B6101`)
+      .get(`/v2/public/flights?key=${KEY}&flightIata=B610111`)
       .reply(200, { error: 'No Record Found or Flight not currently detected by receivers. ' });
-    const response = await request(app).get('/flight/B6101/live.geojson');
-    expect(JSON.parse(response.res.text)).toEqual({
-      $ref: '://flight/B6101/live.geojson',
-      message: 'No Record Found or Flight not currently detected by receivers. ',
-    });
+    const response = await request(app).get('/flight/B610111/live.geojson');
+    expect(JSON.parse(response.res.text)).toEqual({ $ref: '//flight/B610111/live.geojson', message: 'No Record Found or Flight not currently detected by receivers. ' });
   });
 });

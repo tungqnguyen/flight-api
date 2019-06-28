@@ -12112,2872 +12112,415 @@ const allFlights = [
   },
 ];
 
-const filteredByAirlineResponseData = {
-  $ref: '://airport/SGN?airline=VJ&type=departure&destCountry=null',
-  flights: [
-    {
-      type: 'departure',
-      status: 'landed',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T05: 30: 00.000',
-        estimatedRunway: '2019-06-18T06: 10: 00.000',
-        actualRunway: '2019-06-18T06: 10: 00.000',
-      },
-      arrival: {
-        iataCode: 'HAN',
-        icaoCode: 'VVNB',
-        terminal: 'T1',
-        delay: 26,
-        scheduledTime: '2019-06-18T07: 35: 00.000',
-        estimatedTime: '2019-06-18T08: 01: 00.000',
-        actualTime: '2019-06-18T08: 01: 00.000',
-        estimatedRunway: '2019-06-18T07: 49: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '120',
-        iataNumber: 'VJ120',
-        icaoNumber: 'VJC120',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T05: 35: 00.000',
-      },
-      arrival: {
-        iataCode: 'DAD',
-        icaoCode: 'VVDN',
-        terminal: '1',
-        scheduledTime: '2019-06-18T06: 55: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '656',
-        iataNumber: 'VJ656',
-        icaoNumber: 'VJC656',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'active',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T05: 45: 00.000',
-        estimatedRunway: '2019-06-18T06: 05: 00.000',
-        actualRunway: '2019-06-18T06: 05: 00.000',
-      },
-      arrival: {
-        iataCode: 'DLI',
-        icaoCode: 'VVDL',
-        scheduledTime: '2019-06-18T06: 35: 00.000',
-        estimatedRunway: '2019-06-18T06: 30: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '360',
-        iataNumber: 'VJ360',
-        icaoNumber: 'VJC360',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'active',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T05: 45: 00.000',
-        estimatedRunway: '2019-06-18T06: 17: 00.000',
-        actualRunway: '2019-06-18T06: 17: 00.000',
-      },
-      arrival: {
-        iataCode: 'VCL',
-        icaoCode: '',
-        scheduledTime: '2019-06-18T07: 05: 00.000',
-        estimatedRunway: '2019-06-18T07: 07: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '370',
-        iataNumber: 'VJ370',
-        icaoNumber: 'VJC370',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'active',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T05: 50: 00.000',
-        estimatedRunway: '2019-06-18T06: 15: 00.000',
-        actualRunway: '2019-06-18T06: 15: 00.000',
-      },
-      arrival: {
-        iataCode: 'HPH',
-        icaoCode: 'VVCI',
-        scheduledTime: '2019-06-18T07: 50: 00.000',
-        estimatedRunway: '2019-06-18T07: 44: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '270',
-        iataNumber: 'VJ270',
-        icaoNumber: 'VJC270',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'active',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T05: 55: 00.000',
-        estimatedRunway: '2019-06-18T06: 12: 00.000',
-        actualRunway: '2019-06-18T06: 12: 00.000',
-      },
-      arrival: {
-        iataCode: 'HUI',
-        icaoCode: 'VVPB',
-        scheduledTime: '2019-06-18T07: 20: 00.000',
-        estimatedRunway: '2019-06-18T07: 08: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '302',
-        iataNumber: 'VJ302',
-        icaoNumber: 'VJC302',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'active',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T06: 00: 00.000',
-        estimatedRunway: '2019-06-18T06: 35: 00.000',
-        actualRunway: '2019-06-18T06: 35: 00.000',
-      },
-      arrival: {
-        iataCode: 'PQC',
-        icaoCode: 'VVPQ',
-        scheduledTime: '2019-06-18T06: 55: 00.000',
-        estimatedRunway: '2019-06-18T07: 06: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '321',
-        iataNumber: 'VJ321',
-        icaoNumber: 'VJC321',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'landed',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T06: 00: 00.000',
-        estimatedRunway: '2019-06-18T06: 27: 00.000',
-        actualRunway: '2019-06-18T06: 27: 00.000',
-      },
-      arrival: {
-        iataCode: 'HAN',
-        icaoCode: 'VVNB',
-        terminal: 'T1',
-        delay: 13,
-        scheduledTime: '2019-06-18T08: 05: 00.000',
-        estimatedTime: '2019-06-18T08: 18: 00.000',
-        actualTime: '2019-06-18T08: 18: 00.000',
-        estimatedRunway: '2019-06-18T08: 09: 00.000',
-        actualRunway: '2019-06-18T08: 09: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '176',
-        iataNumber: 'VJ176',
-        icaoNumber: 'VJC176',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T06: 05: 00.000',
-      },
-      arrival: {
-        iataCode: 'THD',
-        icaoCode: '',
-        scheduledTime: '2019-06-18T08: 00: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '242',
-        iataNumber: 'VJ242',
-        icaoNumber: 'VJC242',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'landed',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T06: 15: 00.000',
-        estimatedRunway: '2019-06-18T06: 40: 00.000',
-        actualRunway: '2019-06-18T06: 40: 00.000',
-      },
-      arrival: {
-        iataCode: 'VII',
-        icaoCode: 'VVVH',
-        scheduledTime: '2019-06-18T08: 00: 00.000',
-        estimatedRunway: '2019-06-18T08: 08: 00.000',
-        actualRunway: '2019-06-18T08: 08: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '212',
-        iataNumber: 'VJ212',
-        icaoNumber: 'VJC212',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'landed',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T06: 15: 00.000',
-        estimatedRunway: '2019-06-18T06: 38: 00.000',
-        actualRunway: '2019-06-18T06: 38: 00.000',
-      },
-      arrival: {
-        iataCode: 'DAD',
-        icaoCode: 'VVDN',
-        terminal: '1',
-        scheduledTime: '2019-06-18T07: 35: 00.000',
-        estimatedRunway: '2019-06-18T07: 42: 00.000',
-        actualRunway: '2019-06-18T07: 42: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '622',
-        iataNumber: 'VJ622',
-        icaoNumber: 'VJC622',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'active',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T06: 30: 00.000',
-        estimatedRunway: '2019-06-18T06: 48: 00.000',
-        actualRunway: '2019-06-18T06: 48: 00.000',
-      },
-      arrival: {
-        iataCode: 'TBB',
-        icaoCode: 'VVTH',
-        scheduledTime: '2019-06-18T07: 40: 00.000',
-        estimatedRunway: '2019-06-18T07: 39: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '206',
-        iataNumber: 'VJ206',
-        icaoNumber: 'VJC206',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T06: 55: 00.000',
-      },
-      arrival: {
-        iataCode: 'UIH',
-        icaoCode: 'VVPC',
-        scheduledTime: '2019-06-18T08: 05: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '384',
-        iataNumber: 'VJ384',
-        icaoNumber: 'VJC384',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'active',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T07: 00: 00.000',
-        estimatedRunway: '2019-06-18T07: 30: 00.000',
-        actualRunway: '2019-06-18T07: 30: 00.000',
-      },
-      arrival: {
-        iataCode: 'VDO',
-        scheduledTime: '2019-06-18T09: 15: 00.000',
-        estimatedRunway: '2019-06-18T09: 20: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '230',
-        iataNumber: 'VJ230',
-        icaoNumber: 'VJC230',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'active',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: 'T2',
-        scheduledTime: '2019-06-18T07: 00: 00.000',
-        estimatedTime: '2019-06-18T07: 00: 00.000',
-        estimatedRunway: '2019-06-18T07: 25: 00.000',
-        actualRunway: '2019-06-18T07: 25: 00.000',
-      },
-      arrival: {
-        iataCode: 'RMQ',
-        icaoCode: 'RCMQ',
-        terminal: 'T2',
-        delay: 9,
-        scheduledTime: '2019-06-18T11: 20: 00.000',
-        estimatedTime: '2019-06-18T11: 29: 00.000',
-        estimatedRunway: '2019-06-18T11: 29: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '850',
-        iataNumber: 'VJ850',
-        icaoNumber: 'VJC850',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'landed',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T07: 05: 00.000',
-        estimatedRunway: '2019-06-18T07: 33: 00.000',
-        actualRunway: '2019-06-18T07: 33: 00.000',
-      },
-      arrival: {
-        iataCode: 'HAN',
-        icaoCode: 'VVNB',
-        terminal: 'T1',
-        delay: 15,
-        scheduledTime: '2019-06-18T09: 10: 00.000',
-        estimatedTime: '2019-06-18T09: 25: 00.000',
-        actualTime: '2019-06-18T09: 25: 00.000',
-        estimatedRunway: '2019-06-18T09: 17: 00.000',
-        actualRunway: '2019-06-18T09: 17: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '124',
-        iataNumber: 'VJ124',
-        icaoNumber: 'VJC124',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'active',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: 'T2',
-        scheduledTime: '2019-06-18T07: 25: 00.000',
-        estimatedTime: '2019-06-18T07: 25: 00.000',
-        estimatedRunway: '2019-06-18T07: 54: 00.000',
-        actualRunway: '2019-06-18T07: 54: 00.000',
-      },
-      arrival: {
-        iataCode: 'KHH',
-        icaoCode: 'RCKH',
-        terminal: 'I',
-        gate: '27',
-        scheduledTime: '2019-06-18T11: 40: 00.000',
-        estimatedTime: '2019-06-18T11: 35: 00.000',
-        estimatedRunway: '2019-06-18T11: 29: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '886',
-        iataNumber: 'VJ886',
-        icaoNumber: 'VJC886',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T07: 30: 00.000',
-      },
-      arrival: {
-        iataCode: 'HAN',
-        icaoCode: 'VVNB',
-        terminal: '1',
-        scheduledTime: '2019-06-18T09: 35: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '174',
-        iataNumber: 'VJ174',
-        icaoNumber: 'VJC174',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T07: 35: 00.000',
-      },
-      arrival: {
-        iataCode: 'HAN',
-        icaoCode: 'VVNB',
-        terminal: '1',
-        scheduledTime: '2019-06-18T09: 40: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '160',
-        iataNumber: 'VJ160',
-        icaoNumber: 'VJC160',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T07: 55: 00.000',
-      },
-      arrival: {
-        iataCode: 'HAN',
-        icaoCode: 'VVNB',
-        terminal: 'T1',
-        scheduledTime: '2019-06-18T10: 00: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '128',
-        iataNumber: 'VJ128',
-        icaoNumber: 'VJC128',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'landed',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T08: 05: 00.000',
-        estimatedRunway: '2019-06-18T08: 18: 00.000',
-        actualRunway: '2019-06-18T08: 18: 00.000',
-      },
-      arrival: {
-        iataCode: 'DAD',
-        icaoCode: 'VVDN',
-        terminal: '1',
-        scheduledTime: '2019-06-18T09: 25: 00.000',
-        estimatedRunway: '2019-06-18T09: 24: 00.000',
-        actualRunway: '2019-06-18T09: 24: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '646',
-        iataNumber: 'VJ646',
-        icaoNumber: 'VJC646',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'active',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T08: 30: 00.000',
-        estimatedRunway: '2019-06-18T08: 48: 00.000',
-        actualRunway: '2019-06-18T08: 48: 00.000',
-      },
-      arrival: {
-        iataCode: 'HPH',
-        icaoCode: 'VVCI',
-        scheduledTime: '2019-06-18T10: 30: 00.000',
-        estimatedRunway: '2019-06-18T10: 18: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '274',
-        iataNumber: 'VJ274',
-        icaoNumber: 'VJC274',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T08: 30: 00.000',
-      },
-      arrival: {
-        iataCode: 'HUI',
-        icaoCode: 'VVPB',
-        scheduledTime: '2019-06-18T09: 55: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '310',
-        iataNumber: 'VJ310',
-        icaoNumber: 'VJC310',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'landed',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '2',
-        scheduledTime: '2019-06-18T08: 35: 00.000',
-        estimatedRunway: '2019-06-18T09: 09: 00.000',
-        actualRunway: '2019-06-18T09: 09: 00.000',
-      },
-      arrival: {
-        iataCode: 'BKK',
-        icaoCode: 'VTBS',
-        baggage: '08',
-        delay: 20,
-        scheduledTime: '2019-06-18T10: 05: 00.000',
-        estimatedTime: '2019-06-18T10: 25: 00.000',
-        estimatedRunway: '2019-06-18T10: 19: 00.000',
-        actualRunway: '2019-06-18T10: 19: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '801',
-        iataNumber: 'VJ801',
-        icaoNumber: 'VJC801',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'active',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T08: 45: 00.000',
-        estimatedRunway: '2019-06-18T09: 49: 00.000',
-        actualRunway: '2019-06-18T09: 49: 00.000',
-      },
-      arrival: {
-        iataCode: 'HAN',
-        icaoCode: 'VVNB',
-        terminal: 'T1',
-        scheduledTime: '2019-06-18T10: 50: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '132',
-        iataNumber: 'VJ132',
-        icaoNumber: 'VJC132',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'active',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '2',
-        scheduledTime: '2019-06-18T09: 00: 00.000',
-        estimatedRunway: '2019-06-18T09: 40: 00.000',
-        actualRunway: '2019-06-18T09: 40: 00.000',
-      },
-      arrival: {
-        iataCode: 'HKT',
-        icaoCode: 'VTSP',
-        scheduledTime: '2019-06-18T10: 55: 00.000',
-        estimatedRunway: '2019-06-18T11: 11: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '809',
-        iataNumber: 'VJ809',
-        icaoNumber: 'VJC809',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'active',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '2',
-        scheduledTime: '2019-06-18T09: 00: 00.000',
-        estimatedRunway: '2019-06-18T09: 47: 00.000',
-        actualRunway: '2019-06-18T09: 47: 00.000',
-      },
-      arrival: {
-        iataCode: 'SIN',
-        icaoCode: 'WSSS',
-        terminal: '4',
-        baggage: '5',
-        scheduledTime: '2019-06-18T12: 05: 00.000',
-        estimatedRunway: '2019-06-18T12: 24: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '811',
-        iataNumber: 'VJ811',
-        icaoNumber: 'VJC811',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'active',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: 'T2',
-        delay: 17,
-        scheduledTime: '2019-06-18T08: 45: 00.000',
-        estimatedTime: '2019-06-18T09: 02: 00.000',
-        estimatedRunway: '2019-06-18T09: 05: 00.000',
-        actualRunway: '2019-06-18T09: 05: 00.000',
-      },
-      arrival: {
-        iataCode: 'TNN',
-        icaoCode: 'RCNN',
-        scheduledTime: '2019-06-18T13: 00: 00.000',
-        estimatedTime: '2019-06-18T12: 45: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '858',
-        iataNumber: 'VJ858',
-        icaoNumber: 'VJC858',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'active',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T09: 10: 00.000',
-        estimatedRunway: '2019-06-18T09: 37: 00.000',
-        actualRunway: '2019-06-18T09: 37: 00.000',
-      },
-      arrival: {
-        iataCode: 'VII',
-        icaoCode: 'VVVH',
-        scheduledTime: '2019-06-18T10: 55: 00.000',
-        estimatedRunway: '2019-06-18T11: 02: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '214',
-        iataNumber: 'VJ214',
-        icaoNumber: 'VJC214',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T09: 20: 00.000',
-      },
-      arrival: {
-        iataCode: 'HAN',
-        icaoCode: 'VVNB',
-        terminal: '1',
-        scheduledTime: '2019-06-18T11: 25: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '158',
-        iataNumber: 'VJ158',
-        icaoNumber: 'VJC158',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T09: 20: 00.000',
-      },
-      arrival: {
-        iataCode: 'HAN',
-        icaoCode: 'VVNB',
-        terminal: '1',
-        scheduledTime: '2019-06-18T11: 25: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '144',
-        iataNumber: 'VJ144',
-        icaoNumber: 'VJC144',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'active',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '2',
-        scheduledTime: '2019-06-18T09: 30: 00.000',
-        estimatedRunway: '2019-06-18T10: 11: 00.000',
-        actualRunway: '2019-06-18T10: 11: 00.000',
-      },
-      arrival: {
-        iataCode: 'KUL',
-        icaoCode: 'WMKK',
-        terminal: '1',
-        baggage: 'E',
-        delay: 25,
-        scheduledTime: '2019-06-18T12: 25: 00.000',
-        estimatedTime: '2019-06-18T12: 50: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '825',
-        iataNumber: 'VJ825',
-        icaoNumber: 'VJC825',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T09: 30: 00.000',
-      },
-      arrival: {
-        iataCode: 'HAN',
-        icaoCode: 'VVNB',
-        terminal: '1',
-        scheduledTime: '2019-06-18T11: 35: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '126',
-        iataNumber: 'VJ126',
-        icaoNumber: 'VJC126',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T09: 35: 00.000',
-      },
-      arrival: {
-        iataCode: 'HAN',
-        icaoCode: 'VVNB',
-        terminal: 'T1',
-        scheduledTime: '2019-06-18T11: 40: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '188',
-        iataNumber: 'VJ188',
-        icaoNumber: 'VJC188',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'active',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T09: 35: 00.000',
-        estimatedRunway: '2019-06-18T10: 08: 00.000',
-        actualRunway: '2019-06-18T10: 08: 00.000',
-      },
-      arrival: {
-        iataCode: 'PQC',
-        icaoCode: 'VVPQ',
-        scheduledTime: '2019-06-18T10: 30: 00.000',
-        estimatedRunway: '2019-06-18T10: 34: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '339',
-        iataNumber: 'VJ339',
-        icaoNumber: 'VJC339',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T10: 00: 00.000',
-      },
-      arrival: {
-        iataCode: 'UIH',
-        icaoCode: 'VVPC',
-        scheduledTime: '2019-06-18T11: 10: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '386',
-        iataNumber: 'VJ386',
-        icaoNumber: 'VJC386',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T10: 10: 00.000',
-      },
-      arrival: {
-        iataCode: 'HPH',
-        icaoCode: 'VVCI',
-        scheduledTime: '2019-06-18T12: 10: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '276',
-        iataNumber: 'VJ276',
-        icaoNumber: 'VJC276',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T10: 10: 00.000',
-      },
-      arrival: {
-        iataCode: 'PQC',
-        icaoCode: 'VVPQ',
-        scheduledTime: '2019-06-18T11: 05: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '323',
-        iataNumber: 'VJ323',
-        icaoNumber: 'VJC323',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T10: 20: 00.000',
-      },
-      arrival: {
-        iataCode: 'VCL',
-        icaoCode: '',
-        scheduledTime: '2019-06-18T11: 40: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '378',
-        iataNumber: 'VJ378',
-        icaoNumber: 'VJC378',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: 'T2',
-        scheduledTime: '2019-06-18T10: 25: 00.000',
-        estimatedTime: '2019-06-18T10: 25: 00.000',
-      },
-      arrival: {
-        iataCode: 'RMQ',
-        icaoCode: 'RCMQ',
-        terminal: 'T2',
-        scheduledTime: '2019-06-18T14: 45: 00.000',
-        estimatedTime: '2019-06-18T14: 22: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '852',
-        iataNumber: 'VJ852',
-        icaoNumber: 'VJC852',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T11: 10: 00.000',
-      },
-      arrival: {
-        iataCode: 'CXR',
-        icaoCode: 'VVCR',
-        terminal: '1',
-        scheduledTime: '2019-06-18T12: 10: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '618',
-        iataNumber: 'VJ618',
-        icaoNumber: 'VJC618',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '2',
-        scheduledTime: '2019-06-18T11: 15: 00.000',
-      },
-      arrival: {
-        iataCode: 'BKK',
-        icaoCode: 'VTBS',
-        baggage: '07',
-        scheduledTime: '2019-06-18T12: 45: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '803',
-        iataNumber: 'VJ803',
-        icaoNumber: 'VJC803',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T11: 25: 00.000',
-      },
-      arrival: {
-        iataCode: 'CXR',
-        icaoCode: 'VVCR',
-        terminal: '1',
-        scheduledTime: '2019-06-18T12: 25: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '698',
-        iataNumber: 'VJ698',
-        icaoNumber: 'VJC698',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '2',
-        scheduledTime: '2019-06-18T11: 25: 00.000',
-      },
-      arrival: {
-        iataCode: 'CNX',
-        icaoCode: 'VTCC',
-        scheduledTime: '2019-06-18T13: 30: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '891',
-        iataNumber: 'VJ891',
-        icaoNumber: 'VJC891',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T12: 00: 00.000',
-      },
-      arrival: {
-        iataCode: 'CXR',
-        icaoCode: 'VVCR',
-        terminal: '1',
-        scheduledTime: '2019-06-18T13: 00: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '684',
-        iataNumber: 'VJ684',
-        icaoNumber: 'VJC684',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T12: 00: 00.000',
-      },
-      arrival: {
-        iataCode: 'HPH',
-        icaoCode: 'VVCI',
-        scheduledTime: '2019-06-18T14: 00: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '282',
-        iataNumber: 'VJ282',
-        icaoNumber: 'VJC282',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '2',
-        scheduledTime: '2019-06-18T12: 20: 00.000',
-      },
-      arrival: {
-        iataCode: 'ICN',
-        icaoCode: 'RKSI',
-        terminal: '1',
-        gate: '121',
-        baggage: '12',
-        scheduledTime: '2019-06-18T19: 25: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '860',
-        iataNumber: 'VJ860',
-        icaoNumber: 'VJC860',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T12: 30: 00.000',
-      },
-      arrival: {
-        iataCode: 'HAN',
-        icaoCode: 'VVNB',
-        terminal: '1',
-        scheduledTime: '2019-06-18T14: 35: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '142',
-        iataNumber: 'VJ142',
-        icaoNumber: 'VJC142',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T12: 40: 00.000',
-      },
-      arrival: {
-        iataCode: 'VII',
-        icaoCode: 'VVVH',
-        scheduledTime: '2019-06-18T14: 25: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '220',
-        iataNumber: 'VJ220',
-        icaoNumber: 'VJC220',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T12: 55: 00.000',
-      },
-      arrival: {
-        iataCode: 'DAD',
-        icaoCode: 'VVDN',
-        terminal: '1',
-        scheduledTime: '2019-06-18T14: 20: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '624',
-        iataNumber: 'VJ624',
-        icaoNumber: 'VJC624',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T13: 00: 00.000',
-      },
-      arrival: {
-        iataCode: 'DAD',
-        icaoCode: 'VVDN',
-        terminal: '1',
-        scheduledTime: '2019-06-18T14: 20: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '638',
-        iataNumber: 'VJ638',
-        icaoNumber: 'VJC638',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T13: 10: 00.000',
-      },
-      arrival: {
-        iataCode: 'HAN',
-        icaoCode: 'VVNB',
-        terminal: '1',
-        scheduledTime: '2019-06-18T15: 15: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '172',
-        iataNumber: 'VJ172',
-        icaoNumber: 'VJC172',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T13: 20: 00.000',
-      },
-      arrival: {
-        iataCode: 'CXR',
-        icaoCode: 'VVCR',
-        terminal: '1',
-        scheduledTime: '2019-06-18T14: 20: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '604',
-        iataNumber: 'VJ604',
-        icaoNumber: 'VJC604',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T13: 25: 00.000',
-      },
-      arrival: {
-        iataCode: 'THD',
-        icaoCode: '',
-        scheduledTime: '2019-06-18T15: 20: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '252',
-        iataNumber: 'VJ252',
-        icaoNumber: 'VJC252',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T13: 30: 00.000',
-      },
-      arrival: {
-        iataCode: 'PQC',
-        icaoCode: 'VVPQ',
-        scheduledTime: '2019-06-18T14: 25: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '331',
-        iataNumber: 'VJ331',
-        icaoNumber: 'VJC331',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: 'T2',
-        scheduledTime: '2019-06-18T13: 30: 00.000',
-        estimatedTime: '2019-06-18T13: 30: 00.000',
-      },
-      arrival: {
-        iataCode: 'TPE',
-        icaoCode: 'RCTP',
-        terminal: '1',
-        gate: 'B1',
-        scheduledTime: '2019-06-18T18: 00: 00.000',
-        estimatedTime: '2019-06-18T18: 00: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '842',
-        iataNumber: 'VJ842',
-        icaoNumber: 'VJC842',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T13: 35: 00.000',
-      },
-      arrival: {
-        iataCode: 'HUI',
-        icaoCode: 'VVPB',
-        scheduledTime: '2019-06-18T15: 00: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '306',
-        iataNumber: 'VJ306',
-        icaoNumber: 'VJC306',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '2',
-        scheduledTime: '2019-06-18T13: 50: 00.000',
-      },
-      arrival: {
-        iataCode: 'SIN',
-        icaoCode: 'WSSS',
-        terminal: '4',
-        scheduledTime: '2019-06-18T16: 55: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '813',
-        iataNumber: 'VJ813',
-        icaoNumber: 'VJC813',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T14: 00: 00.000',
-      },
-      arrival: {
-        iataCode: 'HAN',
-        icaoCode: 'VVNB',
-        terminal: '1',
-        scheduledTime: '2019-06-18T16: 05: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '146',
-        iataNumber: 'VJ146',
-        icaoNumber: 'VJC146',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T14: 05: 00.000',
-      },
-      arrival: {
-        iataCode: 'DAD',
-        icaoCode: 'VVDN',
-        terminal: '1',
-        scheduledTime: '2019-06-18T15: 25: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '632',
-        iataNumber: 'VJ632',
-        icaoNumber: 'VJC632',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T14: 35: 00.000',
-      },
-      arrival: {
-        iataCode: 'DAD',
-        icaoCode: 'VVDN',
-        terminal: '1',
-        scheduledTime: '2019-06-18T15: 55: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '660',
-        iataNumber: 'VJ660',
-        icaoNumber: 'VJC660',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '2',
-        scheduledTime: '2019-06-18T14: 40: 00.000',
-      },
-      arrival: {
-        iataCode: 'HKG',
-        icaoCode: 'VHHH',
-        terminal: '1',
-        scheduledTime: '2019-06-18T18: 20: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '876',
-        iataNumber: 'VJ876',
-        icaoNumber: 'VJC876',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T14: 45: 00.000',
-      },
-      arrival: {
-        iataCode: 'DAD',
-        icaoCode: 'VVDN',
-        terminal: '1',
-        scheduledTime: '2019-06-18T16: 05: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '628',
-        iataNumber: 'VJ628',
-        icaoNumber: 'VJC628',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T14: 55: 00.000',
-      },
-      arrival: {
-        iataCode: 'DAD',
-        icaoCode: 'VVDN',
-        terminal: '1',
-        scheduledTime: '2019-06-18T16: 15: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '654',
-        iataNumber: 'VJ654',
-        icaoNumber: 'VJC654',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T14: 55: 00.000',
-      },
-      arrival: {
-        iataCode: 'PQC',
-        icaoCode: 'VVPQ',
-        scheduledTime: '2019-06-18T15: 50: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '327',
-        iataNumber: 'VJ327',
-        icaoNumber: 'VJC327',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T15: 00: 00.000',
-      },
-      arrival: {
-        iataCode: 'DAD',
-        icaoCode: 'VVDN',
-        terminal: '1',
-        scheduledTime: '2019-06-18T16: 20: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '634',
-        iataNumber: 'VJ634',
-        icaoNumber: 'VJC634',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T15: 05: 00.000',
-      },
-      arrival: {
-        iataCode: 'VII',
-        icaoCode: 'VVVH',
-        scheduledTime: '2019-06-18T16: 50: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '224',
-        iataNumber: 'VJ224',
-        icaoNumber: 'VJC224',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T15: 05: 00.000',
-      },
-      arrival: {
-        iataCode: 'DAD',
-        icaoCode: 'VVDN',
-        terminal: '1',
-        scheduledTime: '2019-06-18T16: 25: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '626',
-        iataNumber: 'VJ626',
-        icaoNumber: 'VJC626',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T15: 10: 00.000',
-      },
-      arrival: {
-        iataCode: 'HPH',
-        icaoCode: 'VVCI',
-        scheduledTime: '2019-06-18T17: 10: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '272',
-        iataNumber: 'VJ272',
-        icaoNumber: 'VJC272',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T15: 15: 00.000',
-      },
-      arrival: {
-        iataCode: 'VCL',
-        icaoCode: '',
-        scheduledTime: '2019-06-18T16: 35: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '374',
-        iataNumber: 'VJ374',
-        icaoNumber: 'VJC374',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T15: 45: 00.000',
-      },
-      arrival: {
-        iataCode: 'VDH',
-        icaoCode: '',
-        scheduledTime: '2019-06-18T17: 20: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '260',
-        iataNumber: 'VJ260',
-        icaoNumber: 'VJC260',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T16: 00: 00.000',
-      },
-      arrival: {
-        iataCode: 'HUI',
-        icaoCode: 'VVPB',
-        scheduledTime: '2019-06-18T17: 25: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '314',
-        iataNumber: 'VJ314',
-        icaoNumber: 'VJC314',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T16: 00: 00.000',
-      },
-      arrival: {
-        iataCode: 'CXR',
-        icaoCode: 'VVCR',
-        terminal: '1',
-        scheduledTime: '2019-06-18T17: 00: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '606',
-        iataNumber: 'VJ606',
-        icaoNumber: 'VJC606',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: '1',
-        scheduledTime: '2019-06-18T16: 00: 00.000',
-      },
-      arrival: {
-        iataCode: 'HAN',
-        icaoCode: 'VVNB',
-        terminal: 'T1',
-        scheduledTime: '2019-06-18T18: 05: 00.000',
-      },
-      airline: {
-        name: 'VietJet Air',
-        iataCode: 'VJ',
-        icaoCode: 'VJC',
-      },
-      flight: {
-        number: '196',
-        iataNumber: 'VJ196',
-        icaoNumber: 'VJC196',
-      },
-    },
-  ],
+const filteredByAirlineRes = {
+  $ref: '//airport/SGN/flights/departure/?airline=VJ',
+  message: 'OK',
+  result: [{
+    type: 'departure',
+    status: 'landed',
+    airline: { name: 'VietJet Air', iataCode: 'VJ', icaoCode: 'VJC' },
+    flight: {
+      ref: '//flight/VJC120', number: '120', iataNumber: 'VJ120', icaoNumber: 'VJC120',
+    },
+    stops: [{
+      ref: '//airport/VVTS', iataCode: 'SGN', icaoCode: 'VVTS', terminal: '1', scheduledTime: '2019-06-18T05: 30: 00.000', estimatedRunway: '2019-06-18T06: 10: 00.000', actualRunway: '2019-06-18T06: 10: 00.000',
+    }, {
+      ref: '//airport/VVNB', iataCode: 'HAN', icaoCode: 'VVNB', terminal: 'T1', delay: 26, scheduledTime: '2019-06-18T07: 35: 00.000', estimatedTime: '2019-06-18T08: 01: 00.000', actualTime: '2019-06-18T08: 01: 00.000', estimatedRunway: '2019-06-18T07: 49: 00.000',
+    }],
+  }, {
+    type: 'departure',
+    status: 'scheduled',
+    airline: { name: 'VietJet Air', iataCode: 'VJ', icaoCode: 'VJC' },
+    flight: {
+      ref: '//flight/VJC656', number: '656', iataNumber: 'VJ656', icaoNumber: 'VJC656',
+    },
+    stops: [{
+      ref: '//airport/VVTS', iataCode: 'SGN', icaoCode: 'VVTS', terminal: '1', scheduledTime: '2019-06-18T05: 35: 00.000',
+    }, {
+      ref: '//airport/VVDN', iataCode: 'DAD', icaoCode: 'VVDN', terminal: '1', scheduledTime: '2019-06-18T06: 55: 00.000',
+    }],
+  }, {
+    type: 'departure',
+    status: 'active',
+    airline: { name: 'VietJet Air', iataCode: 'VJ', icaoCode: 'VJC' },
+    flight: {
+      ref: '//flight/VJC360', number: '360', iataNumber: 'VJ360', icaoNumber: 'VJC360',
+    },
+    stops: [{
+      ref: '//airport/VVTS', iataCode: 'SGN', icaoCode: 'VVTS', terminal: '1', scheduledTime: '2019-06-18T05: 45: 00.000', estimatedRunway: '2019-06-18T06: 05: 00.000', actualRunway: '2019-06-18T06: 05: 00.000',
+    }, {
+      ref: '//airport/VVDL', iataCode: 'DLI', icaoCode: 'VVDL', scheduledTime: '2019-06-18T06: 35: 00.000', estimatedRunway: '2019-06-18T06: 30: 00.000',
+    }],
+  }, {
+    type: 'departure',
+    status: 'active',
+    airline: { name: 'VietJet Air', iataCode: 'VJ', icaoCode: 'VJC' },
+    flight: {
+      ref: '//flight/VJC370', number: '370', iataNumber: 'VJ370', icaoNumber: 'VJC370',
+    },
+    stops: [{
+      ref: '//airport/VVTS', iataCode: 'SGN', icaoCode: 'VVTS', terminal: '1', scheduledTime: '2019-06-18T05: 45: 00.000', estimatedRunway: '2019-06-18T06: 17: 00.000', actualRunway: '2019-06-18T06: 17: 00.000',
+    }, {
+      ref: '//airport/', iataCode: 'VCL', icaoCode: '', scheduledTime: '2019-06-18T07: 05: 00.000', estimatedRunway: '2019-06-18T07: 07: 00.000',
+    }],
+  }, {
+    type: 'departure',
+    status: 'active',
+    airline: { name: 'VietJet Air', iataCode: 'VJ', icaoCode: 'VJC' },
+    flight: {
+      ref: '//flight/VJC270', number: '270', iataNumber: 'VJ270', icaoNumber: 'VJC270',
+    },
+    stops: [{
+      ref: '//airport/VVTS', iataCode: 'SGN', icaoCode: 'VVTS', terminal: '1', scheduledTime: '2019-06-18T05: 50: 00.000', estimatedRunway: '2019-06-18T06: 15: 00.000', actualRunway: '2019-06-18T06: 15: 00.000',
+    }, {
+      ref: '//airport/VVCI', iataCode: 'HPH', icaoCode: 'VVCI', scheduledTime: '2019-06-18T07: 50: 00.000', estimatedRunway: '2019-06-18T07: 44: 00.000',
+    }],
+  }, {
+    type: 'departure',
+    status: 'active',
+    airline: { name: 'VietJet Air', iataCode: 'VJ', icaoCode: 'VJC' },
+    flight: {
+      ref: '//flight/VJC302', number: '302', iataNumber: 'VJ302', icaoNumber: 'VJC302',
+    },
+    stops: [{
+      ref: '//airport/VVTS', iataCode: 'SGN', icaoCode: 'VVTS', terminal: '1', scheduledTime: '2019-06-18T05: 55: 00.000', estimatedRunway: '2019-06-18T06: 12: 00.000', actualRunway: '2019-06-18T06: 12: 00.000',
+    }, {
+      ref: '//airport/VVPB', iataCode: 'HUI', icaoCode: 'VVPB', scheduledTime: '2019-06-18T07: 20: 00.000', estimatedRunway: '2019-06-18T07: 08: 00.000',
+    }],
+  }, {
+    type: 'departure',
+    status: 'active',
+    airline: { name: 'VietJet Air', iataCode: 'VJ', icaoCode: 'VJC' },
+    flight: {
+      ref: '//flight/VJC321', number: '321', iataNumber: 'VJ321', icaoNumber: 'VJC321',
+    },
+    stops: [{
+      ref: '//airport/VVTS', iataCode: 'SGN', icaoCode: 'VVTS', terminal: '1', scheduledTime: '2019-06-18T06: 00: 00.000', estimatedRunway: '2019-06-18T06: 35: 00.000', actualRunway: '2019-06-18T06: 35: 00.000',
+    }, {
+      ref: '//airport/VVPQ', iataCode: 'PQC', icaoCode: 'VVPQ', scheduledTime: '2019-06-18T06: 55: 00.000', estimatedRunway: '2019-06-18T07: 06: 00.000',
+    }],
+  }, {
+    type: 'departure',
+    status: 'landed',
+    airline: { name: 'VietJet Air', iataCode: 'VJ', icaoCode: 'VJC' },
+    flight: {
+      ref: '//flight/VJC176', number: '176', iataNumber: 'VJ176', icaoNumber: 'VJC176',
+    },
+    stops: [{
+      ref: '//airport/VVTS', iataCode: 'SGN', icaoCode: 'VVTS', terminal: '1', scheduledTime: '2019-06-18T06: 00: 00.000', estimatedRunway: '2019-06-18T06: 27: 00.000', actualRunway: '2019-06-18T06: 27: 00.000',
+    }, {
+      ref: '//airport/VVNB', iataCode: 'HAN', icaoCode: 'VVNB', terminal: 'T1', delay: 13, scheduledTime: '2019-06-18T08: 05: 00.000', estimatedTime: '2019-06-18T08: 18: 00.000', actualTime: '2019-06-18T08: 18: 00.000', estimatedRunway: '2019-06-18T08: 09: 00.000', actualRunway: '2019-06-18T08: 09: 00.000',
+    }],
+  }, {
+    type: 'departure',
+    status: 'scheduled',
+    airline: { name: 'VietJet Air', iataCode: 'VJ', icaoCode: 'VJC' },
+    flight: {
+      ref: '//flight/VJC242', number: '242', iataNumber: 'VJ242', icaoNumber: 'VJC242',
+    },
+    stops: [{
+      ref: '//airport/VVTS', iataCode: 'SGN', icaoCode: 'VVTS', terminal: '1', scheduledTime: '2019-06-18T06: 05: 00.000',
+    }, {
+      ref: '//airport/', iataCode: 'THD', icaoCode: '', scheduledTime: '2019-06-18T08: 00: 00.000',
+    }],
+  }, {
+    type: 'departure',
+    status: 'landed',
+    airline: { name: 'VietJet Air', iataCode: 'VJ', icaoCode: 'VJC' },
+    flight: {
+      ref: '//flight/VJC212', number: '212', iataNumber: 'VJ212', icaoNumber: 'VJC212',
+    },
+    stops: [{
+      ref: '//airport/VVTS', iataCode: 'SGN', icaoCode: 'VVTS', terminal: '1', scheduledTime: '2019-06-18T06: 15: 00.000', estimatedRunway: '2019-06-18T06: 40: 00.000', actualRunway: '2019-06-18T06: 40: 00.000',
+    }, {
+      ref: '//airport/VVVH', iataCode: 'VII', icaoCode: 'VVVH', scheduledTime: '2019-06-18T08: 00: 00.000', estimatedRunway: '2019-06-18T08: 08: 00.000', actualRunway: '2019-06-18T08: 08: 00.000',
+    }],
+  }],
+  query: { destCountry: null, airline: 'VJ' },
+  total: 74,
+  page: 1,
+  limit: 10,
 };
-const filteredByCountryResponseData = {
-  $ref: '://airport/SGN?airline=null&type=departure&destCountry=CN',
-  flights: [
-    {
-      type: 'departure',
-      status: 'landed',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: 'T2',
-        scheduledTime: '2019-06-18T05: 10: 00.000',
-        estimatedRunway: '2019-06-18T05: 09: 00.000',
-        actualRunway: '2019-06-18T05: 09: 00.000',
-      },
-      arrival: {
-        iataCode: 'PEK',
-        icaoCode: 'ZBAA',
-        terminal: '3',
-        scheduledTime: '2019-06-18T11: 05: 00.000',
-        estimatedTime: '2019-06-18T11: 01: 00.000',
-        actualTime: '2019-06-18T11: 01: 00.000',
-        estimatedRunway: '2019-06-18T10: 50: 00.000',
-        actualRunway: '2019-06-18T10: 50: 00.000',
-      },
-      airline: {
-        name: 'Air China',
-        iataCode: 'CA',
-        icaoCode: 'CCA',
-      },
-      flight: {
-        number: '904',
-        iataNumber: 'CA904',
-        icaoNumber: 'CCA904',
-      },
+const filteredByCountryRes = {
+  $ref: '//airport/SGN/flights/departure/?destCountry=CN',
+  message: 'OK',
+  result: [{
+    type: 'departure',
+    status: 'landed',
+    airline: { name: 'Air China', iataCode: 'CA', icaoCode: 'CCA' },
+    flight: {
+      ref: '//flight/CCA904', number: '904', iataNumber: 'CA904', icaoNumber: 'CCA904',
     },
-    {
-      type: 'departure',
-      status: 'active',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: 'T2',
-        gate: '15',
-        scheduledTime: '2019-06-18T07: 25: 00.000',
-        estimatedTime: '2019-06-18T07: 25: 00.000',
-        estimatedRunway: '2019-06-18T07: 40: 00.000',
-        actualRunway: '2019-06-18T07: 40: 00.000',
-      },
-      arrival: {
-        iataCode: 'PVG',
-        icaoCode: 'ZSPD',
-        terminal: '2',
-        baggage: '31',
-        scheduledTime: '2019-06-18T12: 40: 00.000',
-        estimatedTime: '2019-06-18T12: 36: 00.000',
-        estimatedRunway: '2019-06-18T12: 30: 00.000',
-      },
-      airline: {
-        name: 'China Eastern Airlines',
-        iataCode: 'MU',
-        icaoCode: 'CES',
-      },
-      flight: {
-        number: '8473',
-        iataNumber: 'MU8473',
-        icaoNumber: 'CES8473',
-      },
-      codeshared: {
-        airline: {
-          name: 'Vietnam Airlines',
-          iataCode: 'VN',
-          icaoCode: 'HVN',
-        },
-        flight: {
-          number: '522',
-          iataNumber: 'VN522',
-          icaoNumber: 'HVN522',
-        },
-      },
+    stops: [{
+      ref: '//airport/VVTS', iataCode: 'SGN', icaoCode: 'VVTS', terminal: 'T2', scheduledTime: '2019-06-18T05: 10: 00.000', estimatedRunway: '2019-06-18T05: 09: 00.000', actualRunway: '2019-06-18T05: 09: 00.000',
+    }, {
+      ref: '//airport/ZBAA', iataCode: 'PEK', icaoCode: 'ZBAA', terminal: '3', scheduledTime: '2019-06-18T11: 05: 00.000', estimatedTime: '2019-06-18T11: 01: 00.000', actualTime: '2019-06-18T11: 01: 00.000', estimatedRunway: '2019-06-18T10: 50: 00.000', actualRunway: '2019-06-18T10: 50: 00.000',
+    }],
+  }, {
+    type: 'departure',
+    status: 'active',
+    airline: { name: 'China Eastern Airlines', iataCode: 'MU', icaoCode: 'CES' },
+    flight: {
+      ref: '//flight/CES8473', number: '8473', iataNumber: 'MU8473', icaoNumber: 'CES8473',
     },
-    {
-      type: 'departure',
-      status: 'active',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: 'T2',
-        gate: '15',
-        scheduledTime: '2019-06-18T07: 25: 00.000',
-        estimatedTime: '2019-06-18T07: 25: 00.000',
-        estimatedRunway: '2019-06-18T07: 40: 00.000',
-        actualRunway: '2019-06-18T07: 40: 00.000',
-      },
-      arrival: {
-        iataCode: 'PVG',
-        icaoCode: 'ZSPD',
-        terminal: '2',
-        baggage: '31',
-        scheduledTime: '2019-06-18T12: 40: 00.000',
-        estimatedTime: '2019-06-18T12: 36: 00.000',
-        estimatedRunway: '2019-06-18T12: 30: 00.000',
-      },
-      airline: {
-        name: 'Vietnam Airlines',
-        iataCode: 'VN',
-        icaoCode: 'HVN',
-      },
-      flight: {
-        number: '522',
-        iataNumber: 'VN522',
-        icaoNumber: 'HVN522',
-      },
+    codeshared: { airline: { name: 'Vietnam Airlines', iataCode: 'VN', icaoCode: 'HVN' }, flight: { number: '522', iataNumber: 'VN522', icaoNumber: 'HVN522' } },
+    stops: [{
+      ref: '//airport/VVTS', iataCode: 'SGN', icaoCode: 'VVTS', terminal: 'T2', gate: '15', scheduledTime: '2019-06-18T07: 25: 00.000', estimatedTime: '2019-06-18T07: 25: 00.000', estimatedRunway: '2019-06-18T07: 40: 00.000', actualRunway: '2019-06-18T07: 40: 00.000',
+    }, {
+      ref: '//airport/ZSPD', iataCode: 'PVG', icaoCode: 'ZSPD', terminal: '2', baggage: '31', scheduledTime: '2019-06-18T12: 40: 00.000', estimatedTime: '2019-06-18T12: 36: 00.000', estimatedRunway: '2019-06-18T12: 30: 00.000',
+    }],
+  }, {
+    type: 'departure',
+    status: 'active',
+    airline: { name: 'Vietnam Airlines', iataCode: 'VN', icaoCode: 'HVN' },
+    flight: {
+      ref: '//flight/HVN522', number: '522', iataNumber: 'VN522', icaoNumber: 'HVN522',
     },
-    {
-      type: 'departure',
-      status: 'active',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: 'T2',
-        gate: '20',
-        scheduledTime: '2019-06-18T08: 00: 00.000',
-        estimatedTime: '2019-06-18T07: 58: 00.000',
-        estimatedRunway: '2019-06-18T08: 21: 00.000',
-        actualRunway: '2019-06-18T08: 21: 00.000',
-      },
-      arrival: {
-        iataCode: 'CAN',
-        icaoCode: 'ZGGG',
-        terminal: '2',
-        baggage: '50',
-        scheduledTime: '2019-06-18T12: 05: 00.000',
-        estimatedTime: '2019-06-18T11: 48: 00.000',
-        estimatedRunway: '2019-06-18T11: 32: 00.000',
-      },
-      airline: {
-        name: 'Xiamen Airlines',
-        iataCode: 'MF',
-        icaoCode: 'CXA',
-      },
-      flight: {
-        number: '9254',
-        iataNumber: 'MF9254',
-        icaoNumber: 'CXA9254',
-      },
-      codeshared: {
-        airline: {
-          name: 'China Southern Airlines',
-          iataCode: 'CZ',
-          icaoCode: 'CSN',
-        },
-        flight: {
-          number: '368',
-          iataNumber: 'CZ368',
-          icaoNumber: 'CSN368',
-        },
-      },
+    stops: [{
+      ref: '//airport/VVTS', iataCode: 'SGN', icaoCode: 'VVTS', terminal: 'T2', gate: '15', scheduledTime: '2019-06-18T07: 25: 00.000', estimatedTime: '2019-06-18T07: 25: 00.000', estimatedRunway: '2019-06-18T07: 40: 00.000', actualRunway: '2019-06-18T07: 40: 00.000',
+    }, {
+      ref: '//airport/ZSPD', iataCode: 'PVG', icaoCode: 'ZSPD', terminal: '2', baggage: '31', scheduledTime: '2019-06-18T12: 40: 00.000', estimatedTime: '2019-06-18T12: 36: 00.000', estimatedRunway: '2019-06-18T12: 30: 00.000',
+    }],
+  }, {
+    type: 'departure',
+    status: 'active',
+    airline: { name: 'Xiamen Airlines', iataCode: 'MF', icaoCode: 'CXA' },
+    flight: {
+      ref: '//flight/CXA9254', number: '9254', iataNumber: 'MF9254', icaoNumber: 'CXA9254',
     },
-    {
-      type: 'departure',
-      status: 'active',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: 'T2',
-        gate: '20',
-        scheduledTime: '2019-06-18T08: 00: 00.000',
-        estimatedTime: '2019-06-18T07: 58: 00.000',
-        estimatedRunway: '2019-06-18T08: 21: 00.000',
-        actualRunway: '2019-06-18T08: 21: 00.000',
-      },
-      arrival: {
-        iataCode: 'CAN',
-        icaoCode: 'ZGGG',
-        terminal: '2',
-        baggage: '50',
-        scheduledTime: '2019-06-18T12: 05: 00.000',
-        estimatedTime: '2019-06-18T11: 48: 00.000',
-        estimatedRunway: '2019-06-18T11: 32: 00.000',
-      },
-      airline: {
-        name: 'Vietnam Airlines',
-        iataCode: 'VN',
-        icaoCode: 'HVN',
-      },
-      flight: {
-        number: '3500',
-        iataNumber: 'VN3500',
-        icaoNumber: 'HVN3500',
-      },
-      codeshared: {
-        airline: {
-          name: 'China Southern Airlines',
-          iataCode: 'CZ',
-          icaoCode: 'CSN',
-        },
-        flight: {
-          number: '368',
-          iataNumber: 'CZ368',
-          icaoNumber: 'CSN368',
-        },
-      },
+    codeshared: { airline: { name: 'China Southern Airlines', iataCode: 'CZ', icaoCode: 'CSN' }, flight: { number: '368', iataNumber: 'CZ368', icaoNumber: 'CSN368' } },
+    stops: [{
+      ref: '//airport/VVTS', iataCode: 'SGN', icaoCode: 'VVTS', terminal: 'T2', gate: '20', scheduledTime: '2019-06-18T08: 00: 00.000', estimatedTime: '2019-06-18T07: 58: 00.000', estimatedRunway: '2019-06-18T08: 21: 00.000', actualRunway: '2019-06-18T08: 21: 00.000',
+    }, {
+      ref: '//airport/ZGGG', iataCode: 'CAN', icaoCode: 'ZGGG', terminal: '2', baggage: '50', scheduledTime: '2019-06-18T12: 05: 00.000', estimatedTime: '2019-06-18T11: 48: 00.000', estimatedRunway: '2019-06-18T11: 32: 00.000',
+    }],
+  }, {
+    type: 'departure',
+    status: 'active',
+    airline: { name: 'Vietnam Airlines', iataCode: 'VN', icaoCode: 'HVN' },
+    flight: {
+      ref: '//flight/HVN3500', number: '3500', iataNumber: 'VN3500', icaoNumber: 'HVN3500',
     },
-    {
-      type: 'departure',
-      status: 'active',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: 'T2',
-        gate: '20',
-        scheduledTime: '2019-06-18T08: 00: 00.000',
-        estimatedTime: '2019-06-18T07: 58: 00.000',
-        estimatedRunway: '2019-06-18T08: 21: 00.000',
-        actualRunway: '2019-06-18T08: 21: 00.000',
-      },
-      arrival: {
-        iataCode: 'CAN',
-        icaoCode: 'ZGGG',
-        terminal: '2',
-        baggage: '50',
-        scheduledTime: '2019-06-18T12: 05: 00.000',
-        estimatedTime: '2019-06-18T11: 48: 00.000',
-        estimatedRunway: '2019-06-18T11: 32: 00.000',
-      },
-      airline: {
-        name: 'China Southern Airlines',
-        iataCode: 'CZ',
-        icaoCode: 'CSN',
-      },
-      flight: {
-        number: '368',
-        iataNumber: 'CZ368',
-        icaoNumber: 'CSN368',
-      },
+    codeshared: { airline: { name: 'China Southern Airlines', iataCode: 'CZ', icaoCode: 'CSN' }, flight: { number: '368', iataNumber: 'CZ368', icaoNumber: 'CSN368' } },
+    stops: [{
+      ref: '//airport/VVTS', iataCode: 'SGN', icaoCode: 'VVTS', terminal: 'T2', gate: '20', scheduledTime: '2019-06-18T08: 00: 00.000', estimatedTime: '2019-06-18T07: 58: 00.000', estimatedRunway: '2019-06-18T08: 21: 00.000', actualRunway: '2019-06-18T08: 21: 00.000',
+    }, {
+      ref: '//airport/ZGGG', iataCode: 'CAN', icaoCode: 'ZGGG', terminal: '2', baggage: '50', scheduledTime: '2019-06-18T12: 05: 00.000', estimatedTime: '2019-06-18T11: 48: 00.000', estimatedRunway: '2019-06-18T11: 32: 00.000',
+    }],
+  }, {
+    type: 'departure',
+    status: 'active',
+    airline: { name: 'China Southern Airlines', iataCode: 'CZ', icaoCode: 'CSN' },
+    flight: {
+      ref: '//flight/CSN368', number: '368', iataNumber: 'CZ368', icaoNumber: 'CSN368',
     },
-    {
-      type: 'departure',
-      status: 'active',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: 'T2',
-        gate: '14',
-        scheduledTime: '2019-06-18T08: 00: 00.000',
-        estimatedRunway: '2019-06-18T07: 47: 00.000',
-        actualRunway: '2019-06-18T07: 47: 00.000',
-      },
-      arrival: {
-        iataCode: 'XMN',
-        icaoCode: 'ZSAM',
-        terminal: '3',
-        scheduledTime: '2019-06-18T11: 55: 00.000',
-        estimatedTime: '2019-06-18T11: 37: 00.000',
-        estimatedRunway: '2019-06-18T11: 31: 00.000',
-      },
-      airline: {
-        name: 'China Southern Airlines',
-        iataCode: 'CZ',
-        icaoCode: 'CSN',
-      },
-      flight: {
-        number: '4032',
-        iataNumber: 'CZ4032',
-        icaoNumber: 'CSN4032',
-      },
-      codeshared: {
-        airline: {
-          name: 'Xiamen Airlines',
-          iataCode: 'MF',
-          icaoCode: 'CXA',
-        },
-        flight: {
-          number: '8006',
-          iataNumber: 'MF8006',
-          icaoNumber: 'CXA8006',
-        },
-      },
+    stops: [{
+      ref: '//airport/VVTS', iataCode: 'SGN', icaoCode: 'VVTS', terminal: 'T2', gate: '20', scheduledTime: '2019-06-18T08: 00: 00.000', estimatedTime: '2019-06-18T07: 58: 00.000', estimatedRunway: '2019-06-18T08: 21: 00.000', actualRunway: '2019-06-18T08: 21: 00.000',
+    }, {
+      ref: '//airport/ZGGG', iataCode: 'CAN', icaoCode: 'ZGGG', terminal: '2', baggage: '50', scheduledTime: '2019-06-18T12: 05: 00.000', estimatedTime: '2019-06-18T11: 48: 00.000', estimatedRunway: '2019-06-18T11: 32: 00.000',
+    }],
+  }, {
+    type: 'departure',
+    status: 'active',
+    airline: { name: 'China Southern Airlines', iataCode: 'CZ', icaoCode: 'CSN' },
+    flight: {
+      ref: '//flight/CSN4032', number: '4032', iataNumber: 'CZ4032', icaoNumber: 'CSN4032',
     },
-    {
-      type: 'departure',
-      status: 'active',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: 'T2',
-        gate: '14',
-        scheduledTime: '2019-06-18T08: 00: 00.000',
-        estimatedRunway: '2019-06-18T07: 47: 00.000',
-        actualRunway: '2019-06-18T07: 47: 00.000',
-      },
-      arrival: {
-        iataCode: 'XMN',
-        icaoCode: 'ZSAM',
-        terminal: '3',
-        scheduledTime: '2019-06-18T11: 55: 00.000',
-        estimatedTime: '2019-06-18T11: 37: 00.000',
-        estimatedRunway: '2019-06-18T11: 31: 00.000',
-      },
-      airline: {
-        name: 'Vietnam Airlines',
-        iataCode: 'VN',
-        icaoCode: 'HVN',
-      },
-      flight: {
-        number: '3548',
-        iataNumber: 'VN3548',
-        icaoNumber: 'HVN3548',
-      },
-      codeshared: {
-        airline: {
-          name: 'Xiamen Airlines',
-          iataCode: 'MF',
-          icaoCode: 'CXA',
-        },
-        flight: {
-          number: '8006',
-          iataNumber: 'MF8006',
-          icaoNumber: 'CXA8006',
-        },
-      },
+    codeshared: { airline: { name: 'Xiamen Airlines', iataCode: 'MF', icaoCode: 'CXA' }, flight: { number: '8006', iataNumber: 'MF8006', icaoNumber: 'CXA8006' } },
+    stops: [{
+      ref: '//airport/VVTS', iataCode: 'SGN', icaoCode: 'VVTS', terminal: 'T2', gate: '14', scheduledTime: '2019-06-18T08: 00: 00.000', estimatedRunway: '2019-06-18T07: 47: 00.000', actualRunway: '2019-06-18T07: 47: 00.000',
+    }, {
+      ref: '//airport/ZSAM', iataCode: 'XMN', icaoCode: 'ZSAM', terminal: '3', scheduledTime: '2019-06-18T11: 55: 00.000', estimatedTime: '2019-06-18T11: 37: 00.000', estimatedRunway: '2019-06-18T11: 31: 00.000',
+    }],
+  }, {
+    type: 'departure',
+    status: 'active',
+    airline: { name: 'Vietnam Airlines', iataCode: 'VN', icaoCode: 'HVN' },
+    flight: {
+      ref: '//flight/HVN3548', number: '3548', iataNumber: 'VN3548', icaoNumber: 'HVN3548',
     },
-    {
-      type: 'departure',
-      status: 'active',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: 'T2',
-        gate: '14',
-        scheduledTime: '2019-06-18T08: 00: 00.000',
-        estimatedRunway: '2019-06-18T07: 47: 00.000',
-        actualRunway: '2019-06-18T07: 47: 00.000',
-      },
-      arrival: {
-        iataCode: 'XMN',
-        icaoCode: 'ZSAM',
-        terminal: '3',
-        scheduledTime: '2019-06-18T11: 55: 00.000',
-        estimatedTime: '2019-06-18T11: 37: 00.000',
-        estimatedRunway: '2019-06-18T11: 31: 00.000',
-      },
-      airline: {
-        name: 'Xiamen Airlines',
-        iataCode: 'MF',
-        icaoCode: 'CXA',
-      },
-      flight: {
-        number: '8006',
-        iataNumber: 'MF8006',
-        icaoNumber: 'CXA8006',
-      },
+    codeshared: { airline: { name: 'Xiamen Airlines', iataCode: 'MF', icaoCode: 'CXA' }, flight: { number: '8006', iataNumber: 'MF8006', icaoNumber: 'CXA8006' } },
+    stops: [{
+      ref: '//airport/VVTS', iataCode: 'SGN', icaoCode: 'VVTS', terminal: 'T2', gate: '14', scheduledTime: '2019-06-18T08: 00: 00.000', estimatedRunway: '2019-06-18T07: 47: 00.000', actualRunway: '2019-06-18T07: 47: 00.000',
+    }, {
+      ref: '//airport/ZSAM', iataCode: 'XMN', icaoCode: 'ZSAM', terminal: '3', scheduledTime: '2019-06-18T11: 55: 00.000', estimatedTime: '2019-06-18T11: 37: 00.000', estimatedRunway: '2019-06-18T11: 31: 00.000',
+    }],
+  }, {
+    type: 'departure',
+    status: 'active',
+    airline: { name: 'Xiamen Airlines', iataCode: 'MF', icaoCode: 'CXA' },
+    flight: {
+      ref: '//flight/CXA8006', number: '8006', iataNumber: 'MF8006', icaoNumber: 'CXA8006',
     },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: 'T2',
-        gate: '22',
-        scheduledTime: '2019-06-18T10: 05: 00.000',
-        estimatedTime: '2019-06-18T10: 05: 00.000',
-      },
-      arrival: {
-        iataCode: 'CAN',
-        icaoCode: 'ZGGG',
-        terminal: '2',
-        scheduledTime: '2019-06-18T14: 10: 00.000',
-        estimatedTime: '2019-06-18T13: 36: 00.000',
-      },
-      airline: {
-        name: 'China Southern Airlines',
-        iataCode: 'CZ',
-        icaoCode: 'CSN',
-      },
-      flight: {
-        number: '4710',
-        iataNumber: 'CZ4710',
-        icaoNumber: 'CSN4710',
-      },
-      codeshared: {
-        airline: {
-          name: 'Vietnam Airlines',
-          iataCode: 'VN',
-          icaoCode: 'HVN',
-        },
-        flight: {
-          number: '502',
-          iataNumber: 'VN502',
-          icaoNumber: 'HVN502',
-        },
-      },
+    stops: [{
+      ref: '//airport/VVTS', iataCode: 'SGN', icaoCode: 'VVTS', terminal: 'T2', gate: '14', scheduledTime: '2019-06-18T08: 00: 00.000', estimatedRunway: '2019-06-18T07: 47: 00.000', actualRunway: '2019-06-18T07: 47: 00.000',
+    }, {
+      ref: '//airport/ZSAM', iataCode: 'XMN', icaoCode: 'ZSAM', terminal: '3', scheduledTime: '2019-06-18T11: 55: 00.000', estimatedTime: '2019-06-18T11: 37: 00.000', estimatedRunway: '2019-06-18T11: 31: 00.000',
+    }],
+  }, {
+    type: 'departure',
+    status: 'scheduled',
+    airline: { name: 'China Southern Airlines', iataCode: 'CZ', icaoCode: 'CSN' },
+    flight: {
+      ref: '//flight/CSN4710', number: '4710', iataNumber: 'CZ4710', icaoNumber: 'CSN4710',
     },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: 'T2',
-        gate: '22',
-        scheduledTime: '2019-06-18T10: 05: 00.000',
-        estimatedTime: '2019-06-18T10: 05: 00.000',
-      },
-      arrival: {
-        iataCode: 'CAN',
-        icaoCode: 'ZGGG',
-        terminal: '2',
-        scheduledTime: '2019-06-18T14: 10: 00.000',
-        estimatedTime: '2019-06-18T13: 36: 00.000',
-      },
-      airline: {
-        name: 'Xiamen Airlines',
-        iataCode: 'MF',
-        icaoCode: 'CXA',
-      },
-      flight: {
-        number: '9020',
-        iataNumber: 'MF9020',
-        icaoNumber: 'CXA9020',
-      },
-      codeshared: {
-        airline: {
-          name: 'Vietnam Airlines',
-          iataCode: 'VN',
-          icaoCode: 'HVN',
-        },
-        flight: {
-          number: '502',
-          iataNumber: 'VN502',
-          icaoNumber: 'HVN502',
-        },
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: 'T2',
-        gate: '22',
-        scheduledTime: '2019-06-18T10: 05: 00.000',
-        estimatedTime: '2019-06-18T10: 05: 00.000',
-      },
-      arrival: {
-        iataCode: 'CAN',
-        icaoCode: 'ZGGG',
-        terminal: '2',
-        scheduledTime: '2019-06-18T14: 10: 00.000',
-        estimatedTime: '2019-06-18T13: 36: 00.000',
-      },
-      airline: {
-        name: 'Vietnam Airlines',
-        iataCode: 'VN',
-        icaoCode: 'HVN',
-      },
-      flight: {
-        number: '502',
-        iataNumber: 'VN502',
-        icaoNumber: 'HVN502',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: 'T2',
-        gate: '20',
-        scheduledTime: '2019-06-18T11: 55: 00.000',
-        estimatedTime: '2019-06-18T11: 55: 00.000',
-      },
-      arrival: {
-        iataCode: 'CAN',
-        icaoCode: 'ZGGG',
-        terminal: '2',
-        scheduledTime: '2019-06-18T16: 00: 00.000',
-        estimatedTime: '2019-06-18T15: 26: 00.000',
-      },
-      airline: {
-        name: 'Xiamen Airlines',
-        iataCode: 'MF',
-        icaoCode: 'CXA',
-      },
-      flight: {
-        number: '9256',
-        iataNumber: 'MF9256',
-        icaoNumber: 'CXA9256',
-      },
-      codeshared: {
-        airline: {
-          name: 'China Southern Airlines',
-          iataCode: 'CZ',
-          icaoCode: 'CSN',
-        },
-        flight: {
-          number: '3070',
-          iataNumber: 'CZ3070',
-          icaoNumber: 'CSN3070',
-        },
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: 'T2',
-        gate: '20',
-        scheduledTime: '2019-06-18T11: 55: 00.000',
-        estimatedTime: '2019-06-18T11: 55: 00.000',
-      },
-      arrival: {
-        iataCode: 'CAN',
-        icaoCode: 'ZGGG',
-        terminal: '2',
-        scheduledTime: '2019-06-18T16: 00: 00.000',
-        estimatedTime: '2019-06-18T15: 26: 00.000',
-      },
-      airline: {
-        name: 'Vietnam Airlines',
-        iataCode: 'VN',
-        icaoCode: 'HVN',
-      },
-      flight: {
-        number: '3504',
-        iataNumber: 'VN3504',
-        icaoNumber: 'HVN3504',
-      },
-      codeshared: {
-        airline: {
-          name: 'China Southern Airlines',
-          iataCode: 'CZ',
-          icaoCode: 'CSN',
-        },
-        flight: {
-          number: '3070',
-          iataNumber: 'CZ3070',
-          icaoNumber: 'CSN3070',
-        },
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: 'T2',
-        gate: '20',
-        scheduledTime: '2019-06-18T11: 55: 00.000',
-        estimatedTime: '2019-06-18T11: 55: 00.000',
-      },
-      arrival: {
-        iataCode: 'CAN',
-        icaoCode: 'ZGGG',
-        terminal: '2',
-        scheduledTime: '2019-06-18T16: 00: 00.000',
-        estimatedTime: '2019-06-18T15: 26: 00.000',
-      },
-      airline: {
-        name: 'China Southern Airlines',
-        iataCode: 'CZ',
-        icaoCode: 'CSN',
-      },
-      flight: {
-        number: '3070',
-        iataNumber: 'CZ3070',
-        icaoNumber: 'CSN3070',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: 'T2',
-        scheduledTime: '2019-06-18T12: 55: 00.000',
-        estimatedTime: '2019-06-18T12: 55: 00.000',
-      },
-      arrival: {
-        iataCode: 'PVG',
-        icaoCode: 'ZSPD',
-        terminal: '2',
-        scheduledTime: '2019-06-18T17: 55: 00.000',
-        estimatedTime: '2019-06-18T17: 34: 00.000',
-      },
-      airline: {
-        name: 'Xiamen Airlines',
-        iataCode: 'MF',
-        icaoCode: 'CXA',
-      },
-      flight: {
-        number: '9856',
-        iataNumber: 'MF9856',
-        icaoNumber: 'CXA9856',
-      },
-      codeshared: {
-        airline: {
-          name: 'China Southern Airlines',
-          iataCode: 'CZ',
-          icaoCode: 'CSN',
-        },
-        flight: {
-          number: '6078',
-          iataNumber: 'CZ6078',
-          icaoNumber: 'CSN6078',
-        },
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: 'T2',
-        scheduledTime: '2019-06-18T12: 55: 00.000',
-        estimatedTime: '2019-06-18T12: 55: 00.000',
-      },
-      arrival: {
-        iataCode: 'PVG',
-        icaoCode: 'ZSPD',
-        terminal: '2',
-        scheduledTime: '2019-06-18T17: 55: 00.000',
-        estimatedTime: '2019-06-18T17: 34: 00.000',
-      },
-      airline: {
-        name: 'China Southern Airlines',
-        iataCode: 'CZ',
-        icaoCode: 'CSN',
-      },
-      flight: {
-        number: '6078',
-        iataNumber: 'CZ6078',
-        icaoNumber: 'CSN6078',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: 'T2',
-        gate: '15',
-        scheduledTime: '2019-06-18T14: 10: 00.000',
-        estimatedTime: '2019-06-18T14: 10: 00.000',
-      },
-      arrival: {
-        iataCode: 'SZX',
-        icaoCode: 'ZGSZ',
-        terminal: 'T3',
-        baggage: '16',
-        scheduledTime: '2019-06-18T17: 55: 00.000',
-        estimatedTime: '2019-06-18T17: 25: 00.000',
-      },
-      airline: {
-        name: 'Xiamen Airlines',
-        iataCode: 'MF',
-        icaoCode: 'CXA',
-      },
-      flight: {
-        number: '9292',
-        iataNumber: 'MF9292',
-        icaoNumber: 'CXA9292',
-      },
-      codeshared: {
-        airline: {
-          name: 'China Southern Airlines',
-          iataCode: 'CZ',
-          icaoCode: 'CSN',
-        },
-        flight: {
-          number: '8466',
-          iataNumber: 'CZ8466',
-          icaoNumber: 'CSN8466',
-        },
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: 'T2',
-        gate: '15',
-        scheduledTime: '2019-06-18T14: 10: 00.000',
-        estimatedTime: '2019-06-18T14: 10: 00.000',
-      },
-      arrival: {
-        iataCode: 'SZX',
-        icaoCode: 'ZGSZ',
-        terminal: 'T3',
-        baggage: '16',
-        scheduledTime: '2019-06-18T17: 55: 00.000',
-        estimatedTime: '2019-06-18T17: 25: 00.000',
-      },
-      airline: {
-        name: 'China Southern Airlines',
-        iataCode: 'CZ',
-        icaoCode: 'CSN',
-      },
-      flight: {
-        number: '8466',
-        iataNumber: 'CZ8466',
-        icaoNumber: 'CSN8466',
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: 'T2',
-        gate: '27',
-        scheduledTime: '2019-06-18T15: 40: 00.000',
-      },
-      arrival: {
-        iataCode: 'CAN',
-        icaoCode: 'ZGGG',
-        terminal: '2',
-        scheduledTime: '2019-06-18T19: 30: 00.000',
-      },
-      airline: {
-        name: 'Xiamen Airlines',
-        iataCode: 'MF',
-        icaoCode: 'CXA',
-      },
-      flight: {
-        number: '9204',
-        iataNumber: 'MF9204',
-        icaoNumber: 'CXA9204',
-      },
-      codeshared: {
-        airline: {
-          name: 'China Southern Airlines',
-          iataCode: 'CZ',
-          icaoCode: 'CSN',
-        },
-        flight: {
-          number: '374',
-          iataNumber: 'CZ374',
-          icaoNumber: 'CSN374',
-        },
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: 'T2',
-        gate: '27',
-        scheduledTime: '2019-06-18T15: 40: 00.000',
-      },
-      arrival: {
-        iataCode: 'CAN',
-        icaoCode: 'ZGGG',
-        terminal: '2',
-        scheduledTime: '2019-06-18T19: 30: 00.000',
-      },
-      airline: {
-        name: 'Vietnam Airlines',
-        iataCode: 'VN',
-        icaoCode: 'HVN',
-      },
-      flight: {
-        number: '3502',
-        iataNumber: 'VN3502',
-        icaoNumber: 'HVN3502',
-      },
-      codeshared: {
-        airline: {
-          name: 'China Southern Airlines',
-          iataCode: 'CZ',
-          icaoCode: 'CSN',
-        },
-        flight: {
-          number: '374',
-          iataNumber: 'CZ374',
-          icaoNumber: 'CSN374',
-        },
-      },
-    },
-    {
-      type: 'departure',
-      status: 'scheduled',
-      departure: {
-        iataCode: 'SGN',
-        icaoCode: 'VVTS',
-        terminal: 'T2',
-        gate: '27',
-        scheduledTime: '2019-06-18T15: 40: 00.000',
-      },
-      arrival: {
-        iataCode: 'CAN',
-        icaoCode: 'ZGGG',
-        terminal: '2',
-        scheduledTime: '2019-06-18T19: 30: 00.000',
-      },
-      airline: {
-        name: 'China Southern Airlines',
-        iataCode: 'CZ',
-        icaoCode: 'CSN',
-      },
-      flight: {
-        number: '374',
-        iataNumber: 'CZ374',
-        icaoNumber: 'CSN374',
-      },
-    },
-  ],
+    codeshared: { airline: { name: 'Vietnam Airlines', iataCode: 'VN', icaoCode: 'HVN' }, flight: { number: '502', iataNumber: 'VN502', icaoNumber: 'HVN502' } },
+    stops: [{
+      ref: '//airport/VVTS', iataCode: 'SGN', icaoCode: 'VVTS', terminal: 'T2', gate: '22', scheduledTime: '2019-06-18T10: 05: 00.000', estimatedTime: '2019-06-18T10: 05: 00.000',
+    }, {
+      ref: '//airport/ZGGG', iataCode: 'CAN', icaoCode: 'ZGGG', terminal: '2', scheduledTime: '2019-06-18T14: 10: 00.000', estimatedTime: '2019-06-18T13: 36: 00.000',
+    }],
+  }],
+  query: { destCountry: 'CN', airline: null },
+  total: 22,
+  page: 1,
+  limit: 10,
 };
 const liveFlights = [{
-  "geography": {
-      "latitude": -6.25443,
-      "longitude": 113.608,
-      "altitude": 10058.4,
-      "direction": 80
+  geography: {
+    latitude: 27.5138, longitude: -14.6707, altitude: 10972.8, direction: 212,
   },
-  "speed": {
-      "horizontal": 859.328,
-      "isGround": 0,
-      "vertical": 0
+  speed: { horizontal: 887.108, isGround: 0, vertical: 0 },
+  departure: { iataCode: 'MAD', icaoCode: 'MAD' },
+  arrival: { iataCode: 'EZE', icaoCode: 'EZE' },
+  aircraft: {
+    regNumber: 'ECNBE', icaoCode: 'A359', icao24: '346146', iataCode: 'A359',
   },
-  "departure": {
-      "iataCode": "CGK",
-      "icaoCode": "CGK"
-  },
-  "arrival": {
-      "iataCode": "UPG",
-      "icaoCode": "UPG"
-  },
-  "aircraft": {
-      "regNumber": "PKGRC",
-      "icaoCode": "CRJX",
-      "icao24": "8A0337",
-      "iataCode": "CRJX"
-  },
-  "airline": {
-      "iataCode": "ID",
-      "icaoCode": "BTK"
-  },
-  "flight": {
-      "iataNumber": "ID6262",
-      "icaoNumber": "BTK6262",
-      "number": "6262"
-  },
-  "system": {
-      "updated": "1560826412",
-      "squawk": "0"
-  },
-  "status": "en-route"
+  airline: { iataCode: 'IB', icaoCode: 'IBE' },
+  flight: { iataNumber: 'IB6841', icaoNumber: 'IBE6841', number: '6841' },
+  system: { updated: '1561595967', squawk: '0' },
+  status: 'en-route',
 }];
-exports.filteredByCountryResponseData = filteredByCountryResponseData;
+const paginatedDepartureFlightsRes = {
+  $ref: '//airport/SGN/flights/departure',
+  message: 'OK',
+  result: [{
+    type: 'departure',
+    status: 'landed',
+    airline: { name: 'Hong Kong Airlines', iataCode: 'HX', icaoCode: 'CRK' },
+    flight: {
+      ref: '//flight/CRK539', number: '539', iataNumber: 'HX539', icaoNumber: 'CRK539',
+    },
+    stops: [{
+      ref: '//airport/VVTS', iataCode: 'SGN', icaoCode: 'VVTS', terminal: '2', scheduledTime: '2019-06-18T05: 00: 00.000', estimatedTime: '2019-06-18T04: 56: 00.000', actualTime: '2019-06-18T04: 56: 00.000', estimatedRunway: '2019-06-18T05: 16: 00.000', actualRunway: '2019-06-18T05: 16: 00.000',
+    }, {
+      ref: '//airport/VHHH', iataCode: 'HKG', icaoCode: 'VHHH', terminal: '1', baggage: '13', scheduledTime: '2019-06-18T08: 30: 00.000', estimatedTime: '2019-06-18T08: 28: 00.000', actualTime: '2019-06-18T08: 28: 00.000', estimatedRunway: '2019-06-18T08: 24: 00.000', actualRunway: '2019-06-18T08: 24: 00.000',
+    }],
+  }, {
+    type: 'departure',
+    status: 'landed',
+    airline: { name: 'Air China', iataCode: 'CA', icaoCode: 'CCA' },
+    flight: {
+      ref: '//flight/CCA904', number: '904', iataNumber: 'CA904', icaoNumber: 'CCA904',
+    },
+    stops: [{
+      ref: '//airport/VVTS', iataCode: 'SGN', icaoCode: 'VVTS', terminal: 'T2', scheduledTime: '2019-06-18T05: 10: 00.000', estimatedRunway: '2019-06-18T05: 09: 00.000', actualRunway: '2019-06-18T05: 09: 00.000',
+    }, {
+      ref: '//airport/ZBAA', iataCode: 'PEK', icaoCode: 'ZBAA', terminal: '3', scheduledTime: '2019-06-18T11: 05: 00.000', estimatedTime: '2019-06-18T11: 01: 00.000', actualTime: '2019-06-18T11: 01: 00.000', estimatedRunway: '2019-06-18T10: 50: 00.000', actualRunway: '2019-06-18T10: 50: 00.000',
+    }],
+  }, {
+    type: 'departure',
+    status: 'active',
+    airline: { name: 'Jetstar Pacific', iataCode: 'BL', icaoCode: 'PIC' },
+    flight: {
+      ref: '//flight/PIC303', number: '303', iataNumber: 'BL303', icaoNumber: 'PIC303',
+    },
+    stops: [{
+      ref: '//airport/VVTS', iataCode: 'SGN', icaoCode: 'VVTS', terminal: '1', scheduledTime: '2019-06-18T05: 25: 00.000', estimatedRunway: '2019-06-18T06: 04: 00.000', actualRunway: '2019-06-18T06: 04: 00.000',
+    }, {
+      ref: '//airport/VVPQ', iataCode: 'PQC', icaoCode: 'VVPQ', scheduledTime: '2019-06-18T06: 30: 00.000', estimatedRunway: '2019-06-18T06: 37: 00.000',
+    }],
+  }, {
+    type: 'departure',
+    status: 'landed',
+    airline: { name: 'VietJet Air', iataCode: 'VJ', icaoCode: 'VJC' },
+    flight: {
+      ref: '//flight/VJC120', number: '120', iataNumber: 'VJ120', icaoNumber: 'VJC120',
+    },
+    stops: [{
+      ref: '//airport/VVTS', iataCode: 'SGN', icaoCode: 'VVTS', terminal: '1', scheduledTime: '2019-06-18T05: 30: 00.000', estimatedRunway: '2019-06-18T06: 10: 00.000', actualRunway: '2019-06-18T06: 10: 00.000',
+    }, {
+      ref: '//airport/VVNB', iataCode: 'HAN', icaoCode: 'VVNB', terminal: 'T1', delay: 26, scheduledTime: '2019-06-18T07: 35: 00.000', estimatedTime: '2019-06-18T08: 01: 00.000', actualTime: '2019-06-18T08: 01: 00.000', estimatedRunway: '2019-06-18T07: 49: 00.000',
+    }],
+  }, {
+    type: 'departure',
+    status: 'scheduled',
+    airline: { name: 'VietJet Air', iataCode: 'VJ', icaoCode: 'VJC' },
+    flight: {
+      ref: '//flight/VJC656', number: '656', iataNumber: 'VJ656', icaoNumber: 'VJC656',
+    },
+    stops: [{
+      ref: '//airport/VVTS', iataCode: 'SGN', icaoCode: 'VVTS', terminal: '1', scheduledTime: '2019-06-18T05: 35: 00.000',
+    }, {
+      ref: '//airport/VVDN', iataCode: 'DAD', icaoCode: 'VVDN', terminal: '1', scheduledTime: '2019-06-18T06: 55: 00.000',
+    }],
+  }, {
+    type: 'departure',
+    status: 'landed',
+    airline: { name: 'Vietnam Airlines', iataCode: 'VN', icaoCode: 'HVN' },
+    flight: {
+      ref: '//flight/HVN4928', number: '4928', iataNumber: 'VN4928', icaoNumber: 'HVN4928',
+    },
+    codeshared: { airline: { name: 'Jetstar Pacific', iataCode: 'BL', icaoCode: 'PIC' }, flight: { number: '740', iataNumber: 'BL740', icaoNumber: 'PIC740' } },
+    stops: [{
+      ref: '//airport/VVTS', iataCode: 'SGN', icaoCode: 'VVTS', terminal: '1', scheduledTime: '2019-06-18T05: 40: 00.000', estimatedRunway: '2019-06-18T06: 08: 00.000', actualRunway: '2019-06-18T06: 08: 00.000',
+    }, {
+      ref: '//airport/VVNB', iataCode: 'HAN', icaoCode: 'VVNB', terminal: 'T1', delay: 19, scheduledTime: '2019-06-18T07: 45: 00.000', estimatedTime: '2019-06-18T08: 04: 00.000', actualTime: '2019-06-18T08: 04: 00.000', estimatedRunway: '2019-06-18T07: 47: 00.000', actualRunway: '2019-06-18T07: 47: 00.000',
+    }],
+  }, {
+    type: 'departure',
+    status: 'landed',
+    airline: { name: 'Jetstar Pacific', iataCode: 'BL', icaoCode: 'PIC' },
+    flight: {
+      ref: '//flight/PIC740', number: '740', iataNumber: 'BL740', icaoNumber: 'PIC740',
+    },
+    stops: [{
+      ref: '//airport/VVTS', iataCode: 'SGN', icaoCode: 'VVTS', terminal: '1', scheduledTime: '2019-06-18T05: 40: 00.000', estimatedRunway: '2019-06-18T06: 08: 00.000', actualRunway: '2019-06-18T06: 08: 00.000',
+    }, {
+      ref: '//airport/VVNB', iataCode: 'HAN', icaoCode: 'VVNB', terminal: 'T1', delay: 19, scheduledTime: '2019-06-18T07: 45: 00.000', estimatedTime: '2019-06-18T08: 04: 00.000', actualTime: '2019-06-18T08: 04: 00.000', estimatedRunway: '2019-06-18T07: 47: 00.000', actualRunway: '2019-06-18T07: 47: 00.000',
+    }],
+  }, {
+    type: 'departure',
+    status: 'active',
+    airline: { name: 'VietJet Air', iataCode: 'VJ', icaoCode: 'VJC' },
+    flight: {
+      ref: '//flight/VJC360', number: '360', iataNumber: 'VJ360', icaoNumber: 'VJC360',
+    },
+    stops: [{
+      ref: '//airport/VVTS', iataCode: 'SGN', icaoCode: 'VVTS', terminal: '1', scheduledTime: '2019-06-18T05: 45: 00.000', estimatedRunway: '2019-06-18T06: 05: 00.000', actualRunway: '2019-06-18T06: 05: 00.000',
+    }, {
+      ref: '//airport/VVDL', iataCode: 'DLI', icaoCode: 'VVDL', scheduledTime: '2019-06-18T06: 35: 00.000', estimatedRunway: '2019-06-18T06: 30: 00.000',
+    }],
+  }, {
+    type: 'departure',
+    status: 'landed',
+    airline: { name: 'Bamboo Airways', iataCode: 'QH*' },
+    flight: { ref: '//flight/undefined', number: '202', iataNumber: 'QH*202' },
+    stops: [{
+      ref: '//airport/VVTS', iataCode: 'SGN', icaoCode: 'VVTS', scheduledTime: '2019-06-18T05: 45: 00.000', estimatedRunway: '2019-06-18T06: 02: 00.000', actualRunway: '2019-06-18T06: 02: 00.000',
+    }, {
+      ref: '//airport/VVNB', iataCode: 'HAN', icaoCode: 'VVNB', terminal: 'T1', scheduledTime: '2019-06-18T07: 55: 00.000', estimatedTime: '2019-06-18T07: 54: 00.000', estimatedRunway: '2019-06-18T07: 40: 00.000', actualRunway: '2019-06-18T07: 40: 00.000',
+    }],
+  }, {
+    type: 'departure',
+    status: 'active',
+    airline: { name: 'VietJet Air', iataCode: 'VJ', icaoCode: 'VJC' },
+    flight: {
+      ref: '//flight/VJC370', number: '370', iataNumber: 'VJ370', icaoNumber: 'VJC370',
+    },
+    stops: [{
+      ref: '//airport/VVTS', iataCode: 'SGN', icaoCode: 'VVTS', terminal: '1', scheduledTime: '2019-06-18T05: 45: 00.000', estimatedRunway: '2019-06-18T06: 17: 00.000', actualRunway: '2019-06-18T06: 17: 00.000',
+    }, {
+      ref: '//airport/', iataCode: 'VCL', icaoCode: '', scheduledTime: '2019-06-18T07: 05: 00.000', estimatedRunway: '2019-06-18T07: 07: 00.000',
+    }],
+  }],
+  query: { destCountry: null, airline: null },
+  total: 379,
+  page: 1,
+  limit: 10,
+};
+exports.filteredByCountryRes = filteredByCountryRes;
 exports.allFlights = allFlights;
-exports.filteredByAirlineResponseData = filteredByAirlineResponseData;
+exports.filteredByAirlineRes = filteredByAirlineRes;
 exports.liveFlights = liveFlights;
+exports.paginatedDepartureFlightsRes = paginatedDepartureFlightsRes;

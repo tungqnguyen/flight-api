@@ -8,6 +8,7 @@ const axios = require('axios');
 const redis = require('redis');
 const { promisify } = require('util');
 const globals = require('../global');
+const testData = require('../../tests/data/airport_departures');
 // redis init
 const client = redis.createClient();
 // making redis functions to return promise
@@ -39,6 +40,7 @@ const airport = {
   getClosetAirports(latitude, longitude, { typeArr, isoCountryArr, limit }) {
     // type check
     return new Promise((resolve, reject) => {
+      // list of valide airport types
       const airportType = ['heliport', 'closed', 'small_airport', 'medium_airport', 'large_airport', 'seaplane_base'];
       if (isNaN(latitude) || isNaN(longitude)) {
         return resolve('Please enter a valid lat lon');
@@ -66,8 +68,6 @@ const airport = {
         params = params.concat(typeArr);
         params = params.concat(isoCountryArr);
       }
-      // console.log('params', params);
-      // console.log('sql', sql);
       db.all(sql, params, (error, rows) => {
         if (error != null) {
           return reject(error);
@@ -82,7 +82,6 @@ const airport = {
       // prepare parameters for iata_code and icao_code
       const params = airportCodes.concat([...airportCodes]);
       const sql = `SELECT * FROM airport WHERE iata_code IN (${placeholders}) OR icao_code IN (${placeholders});`;
-      const response = { properties: [] };
       db.all(sql, params, (error, rows) => {
         if (rows.length != airportCodes.length) {
           return resolve('No route found');
@@ -182,6 +181,7 @@ const airport = {
         return response;
       }
       response = await axios.get(url);
+      // response = { data: testData.allFlights };
       if (Array.isArray(response.data) && response.data.length > 0) {
         const jsonData = JSON.stringify(response.data);
         this.cacheData(url, jsonData);

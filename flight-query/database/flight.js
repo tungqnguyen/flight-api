@@ -45,24 +45,7 @@ const flight = {
   },
   async getFlightLocation(iataCode) {
     const url = `http://aviation-edge.com/v2/public/flights?key=${KEY}&flightIata=${iataCode}`;
-    // const response = await axios.get(url);
-    const response = {};
-    response.data = [{
-      geography: {
-        latitude: 27.5138, longitude: -14.6707, altitude: 10972.8, direction: 212,
-      },
-      speed: { horizontal: 887.108, isGround: 0, vertical: 0 },
-      departure: { iataCode: 'MAD', icaoCode: 'MAD' },
-      arrival: { iataCode: 'EZE', icaoCode: 'EZE' },
-      aircraft: {
-        regNumber: 'ECNBE', icaoCode: 'A359', icao24: '346146', iataCode: 'A359',
-      },
-      airline: { iataCode: 'IB', icaoCode: 'IBE' },
-      flight: { iataNumber: 'IB6841', icaoNumber: 'IBE6841', number: '6841' },
-      system: { updated: '1561595967', squawk: '0' },
-      status: 'en-route',
-    }];
-    console.log('url', url);
+    const response = await axios.get(url);
     if (response.data != null && Array.isArray(response.data)) {
       try {
         const departedAirport = await airport.getAirportInfo(response.data[0].departure.icaoCode);

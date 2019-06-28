@@ -94,6 +94,8 @@ app.get('/search/airport', async (req, res) => {
     response = { ...response, result: results };
   } else if (Array.isArray(data) && data.length == 0) {
     response.message = 'No record found';
+  } else if (typeof data === 'string') {
+    response.message = data;
   }
   res.send(response);
 });
@@ -245,7 +247,7 @@ app.get('/search/flight/route/', async (req, res) => {
     return res.send(response);
   }
   const data = await flightQuery.findAirportsRoute(airportArr);
-  if (Object.keys(data).length != 0) {
+  if (Array.isArray(data) && data.length > 0) {
     const featureCollection = {
       type: 'FeatureCollection',
       features: [],
@@ -278,9 +280,9 @@ app.get('/search/flight/route/', async (req, res) => {
     });
     featureCollection.features.push(lineString);
     response = { ...response, result: featureCollection };
-  } else {
+  } else if (Array.isArray(data) && data.length == 0) {
     response.message = 'No record found';
-  }
+  } else response.message = data;
   res.send(response);
 });
 
